@@ -1,0 +1,50 @@
+{
+  "name": "@algoux/standard-ranklist-utils",
+  "version": "0.1.0",
+  "author": "bLue",
+  "keywords": [
+    "standard ranklist",
+    "srk",
+    "utils"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "NODE_OPTIONS='--es-module-specifier-resolution=node' ts-node --transpile-only src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "bcp-47-match": "^2.0.2",
+    "bignumber.js": "^9.1.1",
+    "semver": "^7.5.4",
+    "textcolor": "^1.0.2"
+  },
+  "devDependencies": {
+    "@algoux/standard-ranklist": "^0.3.2",
+    "@types/node": "^16.18.38",
+    "@types/semver": "^7.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "eslint": "^8.44.0",
+    "eslint-config-alloy": "^4.0.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "@algoux/standard-ranklist": "*"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algoux/standard-ranklist-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/algoux/standard-ranklist-utils/issues"
+  },
+  "homepage": "https://github.com/algoux/standard-ranklist-utils#readme"
+}

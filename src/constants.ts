@@ -1,0 +1,1 @@
+export const MIN_REGEN_SUPPORTED_VERSION = '0.3.0';
