@@ -364,11 +364,45 @@ function genSeriesCalcFns(
       }
       case 'ICPC': {
         const options = rule.options as srk.RankSeriesRulePresetICPC['options'];
+        let filteredRows = rows.filter((row) => row.user.official === undefined || row.user.official === true);
+        let filteredOfficialRanks = [...officialRanks];
+        if (options.filter) {
+          if (Array.isArray(options.filter.byUserFields) && options.filter.byUserFields.length) {
+            const currentFilteredRows: typeof filteredRows = [];
+            filteredOfficialRanks = filteredOfficialRanks.map(() => null);
+            let currentOfficialRank = 0;
+            let currentOfficialRankOld = 0;
+            rows.forEach((row, index) => {
+              const shouldInclude = options.filter!.byUserFields!.every((filter) => {
+                const { field, rule } = filter;
+                const value = row.user[field];
+                if (value === undefined) {
+                  return false;
+                }
+                return new RegExp(rule).test(`${value}`);
+              });
+              if (shouldInclude) {
+                currentFilteredRows.push(row);
+                const oldRank = officialRanks[index]!;
+                if (oldRank !== null) {
+                  if (currentOfficialRankOld !== oldRank) {
+                    currentOfficialRank++;
+                    currentOfficialRankOld = oldRank;
+                  }
+                  filteredOfficialRanks[index] = currentOfficialRank;
+                } else {
+                  filteredOfficialRanks[index] = null;
+                }
+              }
+            });
+            filteredRows = currentFilteredRows;
+          }
+        }
         const usingEndpointRules: number[][] = [];
         let noTied = false;
         if (options.ratio) {
           const { value, rounding = 'ceil', denominator = 'all' } = options.ratio;
-          const officialRows = rows.filter((row) => row.user.official === undefined || row.user.official === true);
+          const officialRows = filteredRows;
           let total =
             denominator === 'submitted'
               ? officialRows.filter((row) => !row.statuses.every((s) => s.result === null)).length
@@ -402,13 +436,13 @@ function genSeriesCalcFns(
             noTied = true;
           }
         }
-        const officialRanksNoTied: typeof officialRanks = [];
+        const officialRanksNoTied: typeof filteredOfficialRanks = [];
         let currentOfficialRank = 0;
-        for (let i = 0; i < officialRanks.length; i++) {
-          officialRanksNoTied.push(officialRanks[i] === null ? null : ++currentOfficialRank);
+        for (let i = 0; i < filteredOfficialRanks.length; i++) {
+          officialRanksNoTied.push(filteredOfficialRanks[i] === null ? null : ++currentOfficialRank);
         }
         return (row, index) => {
-          if (row.user.official === false) {
+          if (row.user.official === false || !filteredRows.find((r) => r.user.id === row.user.id)) {
             return {
               rank: null,
               segmentIndex: null,
@@ -417,10 +451,10 @@ function genSeriesCalcFns(
           const usingSegmentIndex = (seriesConfig.segments || []).findIndex((_, segIndex) => {
             return usingEndpointRules
               .map((e) => e[segIndex])
-              .every((endpoints) => (noTied ? officialRanksNoTied : officialRanks)[index]! <= endpoints);
+              .every((endpoints) => (noTied ? officialRanksNoTied : filteredOfficialRanks)[index]! <= endpoints);
           });
           return {
-            rank: officialRanks[index],
+            rank: filteredOfficialRanks[index],
             segmentIndex: usingSegmentIndex > -1 ? usingSegmentIndex : null,
           };
         };

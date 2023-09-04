@@ -20,8 +20,8 @@ dependencies:
 
 devDependencies:
   '@algoux/standard-ranklist':
-    specifier: ^0.3.2
-    version: 0.3.2
+    specifier: ^0.3.3
+    version: 0.3.3
   '@types/node':
     specifier: ^16.18.38
     version: 16.18.38
@@ -60,8 +60,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@algoux/standard-ranklist@0.3.2:
-    resolution: {integrity: sha512-YxNzYjJZ6vTARI2tElm+u27BBg2TgsMFkTiHDax26YGk6fsDWzDoKPGUAfvnizpEsyOj71jWXG6rH+gJnp4Mig==}
+  /@algoux/standard-ranklist@0.3.3:
+    resolution: {integrity: sha512-0RbC5F+M2ADVDsQfbdUS1IN1Z0tF8bKMxXNXnODxy/e0atNLR/EQhk8lpKaFO9syPs1ags9SPf0MVn4gnBr0BQ==}
     dev: true
 
   /@cspotcode/source-map-support@0.8.1:
