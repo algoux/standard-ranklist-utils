@@ -94,6 +94,25 @@ export function sortRows(rows: srk.RanklistRow[]): srk.RanklistRow[] {
   return rows;
 }
 
+function cloneDeep<T extends any>(obj: T): T {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+  if (Array.isArray(obj)) {
+    // @ts-ignore
+    return obj.map((item) => cloneDeep(item));
+  }
+  // @ts-ignore
+  const clonedObj: T = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      // @ts-ignore
+      clonedObj[key] = cloneDeep(obj[key]);
+    }
+  }
+  return clonedObj;
+}
+
 export function regenerateRanklistBySolutions(
   originalRanklist: srk.Ranklist,
   solutions: CalculatedSolutionTetrad[],
@@ -105,15 +124,20 @@ export function regenerateRanklistBySolutions(
     penalty: [20, 'min'],
     noPenaltyResults: ['FB', 'AC', '?', 'CE', 'UKE', null],
     timeRounding: 'floor',
-    ...JSON.parse(JSON.stringify(originalRanklist.sorter?.config || {})),
+    ...cloneDeep(originalRanklist.sorter?.config || {}),
   };
-  const ranklist: srk.Ranklist = {
-    ...originalRanklist,
-    rows: [],
-  };
+  // @ts-ignore
+  const ranklist: srk.Ranklist = {};
+  for (const key in originalRanklist) {
+    if (key !== 'rows' && originalRanklist.hasOwnProperty(key)) {
+      // @ts-ignore
+      ranklist[key] = cloneDeep(originalRanklist[key]);
+    }
+  }
+  ranklist.rows = [];
   const rows: srk.RanklistRow[] = [];
   const userRowMap = new Map<string, srk.RanklistRow>();
-  const problemCount = originalRanklist.problems.length;
+  const problemCount = ranklist.problems.length;
   originalRanklist.rows.forEach((row) => {
     const userId =
       (row.user.id && `${row.user.id}`) ||
@@ -221,7 +245,7 @@ export function regenerateRowsByIncrementalSolutions(
     penalty: [20, 'min'],
     noPenaltyResults: ['FB', 'AC', '?', 'CE', 'UKE', null],
     timeRounding: 'floor',
-    ...JSON.parse(JSON.stringify(originalRanklist.sorter?.config || {})),
+    ...cloneDeep(originalRanklist.sorter?.config || {}),
   };
   const userRowIndexMap = new Map<string, number>();
   const rows = [...originalRanklist.rows];
