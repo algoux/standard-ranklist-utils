@@ -491,13 +491,26 @@ function genSeriesCalcFns(
   return fns;
 }
 
-function genRowRanks(rows: srk.RanklistRow[]) {
+function genRowRanks(
+  rows: srk.RanklistRow[],
+  options: {
+    rankingTimePrecision?: srk.TimeUnit;
+    rankingTimeRounding?: 'floor' | 'ceil' | 'round';
+  } = {},
+) {
   const compareScoreEqual = (a: srk.RankScore, b: srk.RankScore) => {
     if (a.value !== b.value) {
       return false;
     }
-    const da = a.time ? formatTimeDuration(a.time) : 0;
-    const db = b.time ? formatTimeDuration(b.time) : 0;
+    const rankingTimePrecision = options.rankingTimePrecision || 'ms';
+    const rankingTimeRoundingFn =
+      options.rankingTimeRounding === 'ceil'
+        ? Math.ceil
+        : options.rankingTimeRounding === 'round'
+        ? Math.round
+        : Math.floor;
+    const da = a.time ? formatTimeDuration(a.time, rankingTimePrecision, rankingTimeRoundingFn) : 0;
+    const db = b.time ? formatTimeDuration(b.time, rankingTimePrecision, rankingTimeRoundingFn) : 0;
     return da === db;
   };
   const genRanks = (rows: srk.RanklistRow[]) => {
@@ -541,7 +554,10 @@ export function convertToStaticRanklist(ranklist: srk.Ranklist): StaticRanklist 
     return ranklist;
   }
   const { series, rows } = ranklist;
-  const rowRanks = genRowRanks(rows);
+  const rowRanks = genRowRanks(rows, {
+    rankingTimePrecision: ranklist.sorter?.config?.rankingTimePrecision,
+    rankingTimeRounding: ranklist.sorter?.config?.rankingTimeRounding,
+  });
   const seriesCalcFns = genSeriesCalcFns(series, rows, rowRanks.ranks, rowRanks.officialRanks);
   return {
     ...ranklist,
