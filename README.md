@@ -27,6 +27,7 @@ npm i -S @algoux/standard-ranklist-utils
 - `resolveColor`
 - `resolveThemeColor`
 - `resolveStyle`
+- `resolveUserMarkers`
 
 ### ranklist
 

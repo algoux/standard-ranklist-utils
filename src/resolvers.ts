@@ -103,3 +103,14 @@ export function resolveStyle(style: srk.Style) {
     backgroundColor: backgroundThemeColor,
   };
 }
+
+export function resolveUserMarkers(user: srk.User, markersConfig: srk.Marker[] | undefined): srk.Marker[] {
+  if (!user) {
+    return [];
+  }
+  const userMarkers = (Array.isArray(user.markers) ? user.markers : [user.marker])
+    .filter(Boolean)
+    .map((marker) => (markersConfig || []).find((m) => m.id === marker))
+    .filter(Boolean) as srk.Marker[];
+  return userMarkers;
+}
