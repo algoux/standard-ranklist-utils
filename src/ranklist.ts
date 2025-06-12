@@ -430,6 +430,8 @@ function genSeriesCalcFns(
           let total =
             denominator === 'submitted'
               ? officialRows.filter((row) => !row.statuses.every((s) => s.result === null)).length
+              : denominator === 'scored'
+              ? officialRows.filter((row) => row.score.value > 0).length
               : officialRows.length;
           const accValues: BigNumber[] = [];
           for (let i = 0; i < value.length; i++) {

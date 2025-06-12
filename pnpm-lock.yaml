@@ -26,8 +26,8 @@ dependencies:
 
 devDependencies:
   '@algoux/standard-ranklist':
-    specifier: ^0.3.7
-    version: 0.3.7
+    specifier: ^0.3.8
+    version: 0.3.8
   '@types/node':
     specifier: ^16.18.38
     version: 16.18.38
@@ -66,8 +66,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@algoux/standard-ranklist@0.3.7:
-    resolution: {integrity: sha512-iVP8DfZ4FVNfmhbRiQy80dHk/u9hBcooxAr6bkb1lanQvVoMNbL6tGNAe/Er9RYa7kSQkvfbgjG9ePh0HdTYGQ==}
+  /@algoux/standard-ranklist@0.3.8:
+    resolution: {integrity: sha512-QPU3L1lE/pDodqBA8A6ofX7RuL0vVHHjvp3kLQ8LKHSBOoQvBFjs4S5eXItdMoKaqYh5ofIVz3+BDCCLAnF8+Q==}
     dev: true
 
   /@esbuild/aix-ppc64@0.23.1:

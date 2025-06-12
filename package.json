@@ -25,7 +25,8 @@
   ],
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "pkgroll"
+    "build": "pkgroll",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@types/semver": "^7.5.0",
@@ -35,7 +36,7 @@
     "textcolor": "^1.0.2"
   },
   "devDependencies": {
-    "@algoux/standard-ranklist": "^0.3.7",
+    "@algoux/standard-ranklist": "^0.3.8",
     "@types/node": "^16.18.38",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
