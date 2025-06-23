@@ -329,6 +329,8 @@ function genSeriesCalcFns(
   ranks: number[],
   officialRanks: (number | null)[],
 ) {
+  const filterableUserFields = ['id', 'name', 'organization'];
+  const groupableUserFields = ['id', 'name', 'organization'];
   const fallbackSeriesCalcFn = () => ({
     rank: null,
     segmentIndex: null,
@@ -367,10 +369,11 @@ function genSeriesCalcFns(
           if (options.includeOfficialOnly && row.user.official === false) {
             return;
           }
+          const isValidField = groupableUserFields.includes(field);
           const value = stringify(row.user[field]);
-          if (value && !valueSet.has(value)) {
+          if (!isValidField || (value && !valueSet.has(value))) {
             const outerRank = options.includeOfficialOnly ? (officialRanks[index] as number) : ranks[index];
-            valueSet.add(value);
+            isValidField && valueSet.add(value);
             if (outerRank !== lastOuterRank) {
               lastOuterRank = outerRank;
               lastRank = assignedRanksMap.size + 1;
@@ -391,20 +394,38 @@ function genSeriesCalcFns(
         let filteredRows = rows.filter((row) => row.user.official === undefined || row.user.official === true);
         let filteredOfficialRanks = [...officialRanks];
         if (options.filter) {
+          const filterTests: ((row: srk.RanklistRow) => boolean)[] = [];
           if (Array.isArray(options.filter.byUserFields) && options.filter.byUserFields.length) {
-            const currentFilteredRows: typeof filteredRows = [];
-            filteredOfficialRanks = filteredOfficialRanks.map(() => null);
-            let currentOfficialRank = 0;
-            let currentOfficialRankOld = 0;
-            rows.forEach((row, index) => {
-              const shouldInclude = options.filter!.byUserFields!.every((filter) => {
-                const { field, rule } = filter;
+            options.filter.byUserFields.forEach((filter) => {
+              const { field, rule } = filter;
+              if (!filterableUserFields.includes(field)) {
+                return;
+              }
+              filterTests.push((row) => {
                 const value = row.user[field];
                 if (value === undefined) {
                   return false;
                 }
                 return new RegExp(rule).test(`${value}`);
               });
+            });
+          }
+          if (options.filter.byMarker) {
+            const marker = options.filter.byMarker;
+            filterTests.push((row) => {
+              return (
+                row.user.marker === marker || (Array.isArray(row.user.markers) && row.user.markers.includes(marker))
+              );
+            });
+          }
+
+          if (filterTests.length) {
+            const currentFilteredRows: typeof filteredRows = [];
+            filteredOfficialRanks = filteredOfficialRanks.map(() => null);
+            let currentOfficialRank = 0;
+            let currentOfficialRankOld = 0;
+            rows.forEach((row, index) => {
+              const shouldInclude = filterTests.every((test) => test(row));
               if (shouldInclude) {
                 currentFilteredRows.push(row);
                 const oldRank = officialRanks[index]!;
