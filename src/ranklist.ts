@@ -422,16 +422,18 @@ function genSeriesCalcFns(
           if (filterTests.length) {
             const currentFilteredRows: typeof filteredRows = [];
             filteredOfficialRanks = filteredOfficialRanks.map(() => null);
+            let currentRank = 0;
             let currentOfficialRank = 0;
             let currentOfficialRankOld = 0;
             rows.forEach((row, index) => {
               const shouldInclude = filterTests.every((test) => test(row));
               if (shouldInclude) {
                 currentFilteredRows.push(row);
+                currentRank++;
                 const oldRank = officialRanks[index]!;
                 if (oldRank !== null) {
                   if (currentOfficialRankOld !== oldRank) {
-                    currentOfficialRank++;
+                    currentOfficialRank = currentRank;
                     currentOfficialRankOld = oldRank;
                   }
                   filteredOfficialRanks[index] = currentOfficialRank;
