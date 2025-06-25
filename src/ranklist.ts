@@ -429,9 +429,9 @@ function genSeriesCalcFns(
               const shouldInclude = filterTests.every((test) => test(row));
               if (shouldInclude) {
                 currentFilteredRows.push(row);
-                currentRank++;
                 const oldRank = officialRanks[index]!;
                 if (oldRank !== null) {
+                  currentRank++;
                   if (currentOfficialRankOld !== oldRank) {
                     currentOfficialRank = currentRank;
                     currentOfficialRankOld = oldRank;
