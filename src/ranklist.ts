@@ -113,6 +113,28 @@ function cloneDeep<T extends any>(obj: T): T {
   return clonedObj;
 }
 
+export function calculateProblemStatistics(ranklist: srk.Ranklist): srk.ProblemStatistics[] {
+  const problemCount = ranklist.problems.length;
+  const problemAcceptedCount = new Array(problemCount).fill(0);
+  const problemSubmittedCount = new Array(problemCount).fill(0);
+  for (const row of ranklist.rows) {
+    for (let i = 0; i < problemCount; i++) {
+      const status = row.statuses[i];
+      if (!status?.result) {
+        continue;
+      }
+      if (status.result === 'AC' || status.result === 'FB') {
+        problemAcceptedCount[i] += 1;
+      }
+      problemSubmittedCount[i] += status.tries || 0;
+    }
+  }
+  return ranklist.problems.map((_, index) => ({
+    accepted: problemAcceptedCount[index],
+    submitted: problemSubmittedCount[index],
+  }));
+}
+
 export function regenerateRanklistBySolutions(
   originalRanklist: srk.Ranklist,
   solutions: CalculatedSolutionTetrad[],
@@ -122,7 +144,7 @@ export function regenerateRanklistBySolutions(
   }
   const sorterConfig: srk.SorterICPC['config'] = {
     penalty: [20, 'min'],
-    noPenaltyResults: ['FB', 'AC', '?', 'CE', 'UKE', null],
+    noPenaltyResults: ['FB', 'AC', '?', 'NOUT', 'CE', 'UKE', null],
     timeRounding: 'floor',
     ...cloneDeep(originalRanklist.sorter?.config || {}),
   };
@@ -243,7 +265,7 @@ export function regenerateRowsByIncrementalSolutions(
   }
   const sorterConfig: srk.SorterICPC['config'] = {
     penalty: [20, 'min'],
-    noPenaltyResults: ['FB', 'AC', '?', 'CE', 'UKE', null],
+    noPenaltyResults: ['FB', 'AC', '?', 'NOUT', 'CE', 'UKE', null],
     timeRounding: 'floor',
     ...cloneDeep(originalRanklist.sorter?.config || {}),
   };

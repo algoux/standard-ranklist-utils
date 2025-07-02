@@ -35,6 +35,7 @@ npm i -S @algoux/standard-ranklist-utils
 - `getSortedCalculatedRawSolutions`
 - `filterSolutionsUntil`
 - `sortRows`
+- `calculateProblemStatistics`
 - `regenerateRanklistBySolutions`
 - `regenerateRowsByIncrementalSolutions`
 - `convertToStaticRanklist`
