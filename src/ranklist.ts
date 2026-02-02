@@ -428,6 +428,12 @@ function genSeriesCalcFns(
                 if (value === undefined) {
                   return false;
                 }
+                if (typeof value === 'object') {
+                  return Object.values(value).some((v) => new RegExp(rule).test(`${v}`));
+                }
+                if (Array.isArray(value)) {
+                  return value.some((v) => new RegExp(rule).test(`${v}`));
+                }
                 return new RegExp(rule).test(`${value}`);
               });
             });
