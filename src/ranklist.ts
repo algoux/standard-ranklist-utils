@@ -470,7 +470,9 @@ function genSeriesCalcFns(
                 }
               }
             });
-            filteredRows = currentFilteredRows;
+            filteredRows = currentFilteredRows.filter(
+              (row) => row.user.official === undefined || row.user.official === true,
+            );
           }
         }
         const usingEndpointRules: number[][] = [];
