@@ -17,8 +17,8 @@ export function resolveText(text: srk.Text | undefined): string {
       .sort()
       .reverse();
     const userLangs = (typeof navigator !== 'undefined' && [...navigator.languages]) || [];
-    const usingLang = langLookup(userLangs, langs) || 'fallback';
-    return text[usingLang] ?? '';
+    const usingLang = langLookup(userLangs, langs) || '';
+    return text[usingLang] ?? text.fallback ?? '';
   }
 }
 
