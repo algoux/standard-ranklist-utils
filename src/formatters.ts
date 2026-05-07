@@ -1,10 +1,22 @@
 import type * as srk from '@algoux/standard-ranklist';
 
+/**
+ * Convert an srk time duration to the requested unit.
+ *
+ * @param time - Source duration tuple, such as `[90, 's']`.
+ * @param targetUnit - Unit to convert the duration to.
+ * @param fmt - Optional formatter used for converted non-millisecond values, commonly `Math.floor`, `Math.ceil`, or `Math.round`.
+ * @returns Converted duration value.
+ * @throws If the source value is negative/non-finite, or the source/target time unit is unsupported.
+ */
 export function formatTimeDuration(
   time: srk.TimeDuration,
   targetUnit: srk.TimeUnit = 'ms',
   fmt: (num: number) => number = (num) => num,
 ) {
+  if (!Number.isFinite(time[0]) || time[0] < 0) {
+    throw new Error(`Invalid source time value ${time[0]}`);
+  }
   let ms = -1;
   switch (time[1]) {
     case 'ms':
@@ -41,6 +53,13 @@ export function formatTimeDuration(
   }
 }
 
+/**
+ * Left-pad a number with zeroes until it reaches the requested display width.
+ *
+ * @param num - Number to format.
+ * @param size - Minimum string width.
+ * @returns Zero-filled number string, or the original number string when it is already long enough.
+ */
 export function preZeroFill(num: number, size: number): string {
   if (num >= Math.pow(10, size)) {
     return num.toString();
@@ -51,12 +70,18 @@ export function preZeroFill(num: number, size: number): string {
 }
 
 /**
- * format seconds to time string
- * @param {number} second
- * @param {{ fillHour?: boolean, showDay?: boolean }} options
- * @returns {string}
+ * Format elapsed seconds as a ranklist time string.
+ *
+ * @param second - Elapsed seconds.
+ * @param options - Formatting options.
+ * @param options.fillHour - Pad the hour field to two digits.
+ * @param options.showDay - Show a leading day count when the duration is at least one day.
+ * @returns Time string in `H:mm:ss`/`HH:mm:ss` form, optionally prefixed with `nD `; returns `--` for negative input.
  */
 export function secToTimeStr(second: number, options: { fillHour?: boolean; showDay?: boolean } = {}): string {
+  if (second < 0) {
+    return '--';
+  }
   let sec = second;
   let d = 0;
   const { fillHour = false, showDay = false } = options;
@@ -73,21 +98,19 @@ export function secToTimeStr(second: number, options: { fillHour?: boolean; show
   if (showDay && d >= 1) {
     dayStr = d + 'D ';
   }
-  if (sec < 0) {
-    return '--';
-  }
   return dayStr + (fillHour ? preZeroFill(h, 2) : `${h}`) + ':' + preZeroFill(m, 2) + ':' + preZeroFill(s, 2);
 }
 
 /**
- * Format number index to alphabet index
- * 0 => 'A'
- * 2 => 'C'
- * 25 => 'Z'
- * 26 => 'AA'
- * 28 => 'AC
- * @param {number | string} number
- * @returns {string}
+ * Convert a zero-based numeric problem index to an alphabetic problem alias.
+ *
+ * @param number - Numeric index, or a numeric string.
+ * @returns Alphabetic alias such as `A`, `Z`, `AA`, or `AC`.
+ * @example
+ * numberToAlphabet(0) // 'A'
+ * numberToAlphabet(25) // 'Z'
+ * numberToAlphabet(26) // 'AA'
+ * numberToAlphabet(28) // 'AC'
  */
 export function numberToAlphabet(number: number | string): string {
   let n = ~~number;
@@ -108,14 +131,15 @@ export function numberToAlphabet(number: number | string): string {
 }
 
 /**
- * Format alphabet index to number index
- * 'A' => 0
- * 'C' => 2
- * 'Z' => 25
- * 'AA' => 26
- * 'AC' => 28
- * @param {string} alphabet
- * @returns {number}
+ * Convert an alphabetic problem alias to a zero-based numeric index.
+ *
+ * @param alphabet - Alphabetic alias.
+ * @returns Zero-based index, or `-1` for empty/non-string input.
+ * @example
+ * alphabetToNumber('A') // 0
+ * alphabetToNumber('Z') // 25
+ * alphabetToNumber('AA') // 26
+ * alphabetToNumber('AC') // 28
  */
 export function alphabetToNumber(alphabet: string): number {
   if (typeof alphabet !== 'string' || !alphabet.length) {

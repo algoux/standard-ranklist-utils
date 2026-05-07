@@ -5,6 +5,15 @@ import { lookup as langLookup } from 'bcp-47-match';
 import { EnumTheme } from './enums';
 import { ThemeColor } from './types';
 
+/**
+ * Resolve an srk text value into a display string.
+ *
+ * When an i18n text object is provided, browser `navigator.languages` are matched against the available BCP 47 keys.
+ * If no exact lookup result is found, a primary-language match is attempted before using the `fallback` field.
+ *
+ * @param text - Plain text or i18n text object.
+ * @returns Resolved display string, or an empty string for missing text.
+ */
 export function resolveText(text: srk.Text | undefined): string {
   if (text === undefined) {
     return '';
@@ -17,15 +26,22 @@ export function resolveText(text: srk.Text | undefined): string {
       .sort()
       .reverse();
     const userLangs = (typeof navigator !== 'undefined' && [...navigator.languages]) || [];
-    const usingLang = langLookup(userLangs, langs) || '';
+    const usingLang =
+      langLookup(userLangs, langs) ||
+      userLangs
+        .map((lang) => lang.split('-')[0])
+        .map((primaryLang) => langs.find((lang) => lang === primaryLang || lang.startsWith(`${primaryLang}-`)))
+        .find(Boolean) ||
+      '';
     return text[usingLang] ?? text.fallback ?? '';
   }
 }
 
 /**
- * Parse contributor string to an object which contains name, email (optional) and url (optional).
- * @param contributor
- * @returns parsed contributor object
+ * Parse a contributor string into name, email, and URL parts.
+ *
+ * @param contributor - Contributor string in npm-style `name <email> (url)` form.
+ * @returns Parsed contributor object, or `null` for missing input.
  * @example
  * 'name <mail@example.com> (http://example.com)' -> { name: 'name', email: 'mail@example.com', url: 'http://example.com' }
  * 'name' -> { name: 'name' }
@@ -63,6 +79,12 @@ export function resolveContributor(
   return { name, email, url };
 }
 
+/**
+ * Normalize an srk color value to a CSS color string.
+ *
+ * @param color - Color string, or an RGBA tuple supported by older data.
+ * @returns CSS color string, or `undefined` when no color is provided.
+ */
 export function resolveColor(color: srk.Color) {
   if (Array.isArray(color)) {
     return `rgba(${color[0]},${color[1]},${color[2]},${color[3]})`;
@@ -72,6 +94,12 @@ export function resolveColor(color: srk.Color) {
   return undefined;
 }
 
+/**
+ * Resolve a theme color into explicit light and dark theme values.
+ *
+ * @param themeColor - Single color string or `{ light, dark }` theme color object.
+ * @returns Theme color map keyed by `EnumTheme.light` and `EnumTheme.dark`.
+ */
 export function resolveThemeColor(themeColor: srk.ThemeColor): ThemeColor {
   let light = resolveColor(typeof themeColor === 'string' ? themeColor : themeColor.light);
   let dark = resolveColor(typeof themeColor === 'string' ? themeColor : themeColor.dark);
@@ -81,6 +109,14 @@ export function resolveThemeColor(themeColor: srk.ThemeColor): ThemeColor {
   };
 }
 
+/**
+ * Resolve an srk style object into explicit light/dark text and background colors.
+ *
+ * If a background color is provided without a text color, a readable foreground color is selected automatically.
+ *
+ * @param style - srk style object.
+ * @returns Resolved text and background theme colors.
+ */
 export function resolveStyle(style: srk.Style) {
   const { textColor, backgroundColor } = style;
   let usingTextColor: typeof textColor = textColor;
@@ -104,6 +140,15 @@ export function resolveStyle(style: srk.Style) {
   };
 }
 
+/**
+ * Resolve the marker definitions attached to a user.
+ *
+ * The modern `user.markers` array takes precedence over the deprecated `user.marker` field.
+ *
+ * @param user - User object.
+ * @param markersConfig - Available ranklist marker definitions.
+ * @returns Marker objects found in `markersConfig`, preserving the user's marker order.
+ */
 export function resolveUserMarkers(user: srk.User, markersConfig: srk.Marker[] | undefined): srk.Marker[] {
   if (!user) {
     return [];
