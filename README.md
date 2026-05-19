@@ -57,6 +57,9 @@ pnpm run verify:fixtures
 
 ## Release Checks
 
+The `Test` GitHub Actions workflow is CI only: it runs tests, builds, fixture checks, and packaging dry runs. Releases are
+handled by the manual `Release` workflow so each language package can publish independently.
+
 ```shell
 pnpm -C js build
 (cd js && npm pack --dry-run)
@@ -66,4 +69,33 @@ go -C go test ./...
 go -C go vet ./...
 ```
 
-For Go subdirectory releases, tag with the module prefix, for example `go/v0.3.0`.
+## Publishing
+
+Run **Actions > Release** manually with:
+
+- `package`: `js`, `python`, or `go`.
+- `version`: stable SemVer without `v`, for example `0.3.1`.
+- `dry_run`: keep `true` to validate only; set `false` to publish, tag, and create a GitHub Release.
+
+Real releases are restricted to `main` or `master`. The workflow validates that the target tag does not already exist,
+runs the target package checks, and then publishes only the selected package.
+
+Version sources and tags are independent:
+
+- JS: update `js/package.json`; release tag `js/vX.Y.Z`.
+- Python: update `python/pyproject.toml`; release tag `python/vX.Y.Z`.
+- Go: no version in `go.mod`; release tag `go/vX.Y.Z`.
+
+Configure registry publishing before setting `dry_run=false`:
+
+- npm: configure Trusted Publishing for `@algoux/standard-ranklist-utils` with workflow `release.yml` and environment
+  `npm`.
+- PyPI: configure Trusted Publisher for `algoux-standard-ranklist-utils` with workflow `release.yml` and environment
+  `pypi`.
+- GitHub: create `npm`, `pypi`, and `go-release` environments, preferably with required reviewers.
+
+The workflow uses OIDC / Trusted Publishing and does not require `NPM_TOKEN` or `PYPI_API_TOKEN`.
+
+Registry setup references: [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers),
+[PyPI Trusted Publishers](https://docs.pypi.org/trusted-publishers/using-a-publisher/), and
+[Go modules](https://go.dev/ref/mod).
