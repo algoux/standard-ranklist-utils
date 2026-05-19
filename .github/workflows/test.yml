@@ -1,0 +1,60 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run sync:fixtures
+      - run: git diff --exit-code -- testdata/contract-fixtures.json python/tests/fixtures/contract-fixtures.json go/testdata/fixtures/contract-fixtures.json
+      - run: pnpm -C js test
+      - run: pnpm -C js build
+      - run: npm pack --dry-run
+        working-directory: js
+
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e 'python[dev]'
+      - run: python -m pytest python/tests
+      - run: python -m ruff check python/src python/tests
+      - run: python -m build python
+        if: matrix.python-version == '3.12'
+      - run: python -m twine check python/dist/*
+        if: matrix.python-version == '3.12'
+
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+          cache-dependency-path: go/go.mod
+      - run: go test ./...
+        working-directory: go
+      - run: go vet ./...
+        working-directory: go
+      - run: go mod tidy
+        working-directory: go
+      - run: git diff --exit-code -- go/go.mod go/go.sum
+      - run: test -z "$(git status --porcelain -- go/go.mod go/go.sum)"

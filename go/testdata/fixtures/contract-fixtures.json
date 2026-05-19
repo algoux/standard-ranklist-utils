@@ -1,0 +1,948 @@
+{
+  "constants": {
+    "minRegenSupportedVersion": "0.3.0",
+    "srkSupportedVersions": ">=0.3.0 <0.4.0",
+    "enumTheme": {
+      "light": "light",
+      "dark": "dark"
+    }
+  },
+  "formatters": {
+    "formatTimeDuration": {
+      "hoursToMinutes": 90,
+      "secondsToMinutesCeil": 2,
+      "secondsToMillisecondsIgnoresFormatter": 2000
+    },
+    "preZeroFill": {
+      "short": "007",
+      "long": "1234"
+    },
+    "secToTimeStr": {
+      "fillHour": "01:01:01",
+      "showDay": "1D 1:01:01",
+      "negative": "--"
+    },
+    "alphabet": {
+      "zero": "A",
+      "z": "Z",
+      "aa": "AA",
+      "acFromString": "AC",
+      "zz": "ZZ",
+      "aaa": "AAA",
+      "numberA": 0,
+      "numberAA": 26,
+      "numberLowerAc": 28,
+      "numberEmpty": -1
+    }
+  },
+  "resolvers": {
+    "text": {
+      "undefined": "",
+      "plain": "plain",
+      "zhCN": "中文",
+      "enGB": "English",
+      "zhHansCN": "中文",
+      "fallback": "Fallback",
+      "emptyMatch": ""
+    },
+    "contributor": {
+      "missing": null,
+      "nameOnly": {
+        "name": "Alice"
+      },
+      "nameEmail": {
+        "name": "Bob",
+        "email": "bob@example.com"
+      },
+      "full": {
+        "name": "bLue",
+        "email": "mail@example.com",
+        "url": "https://example.com/"
+      },
+      "nameUrl": {
+        "name": "John Smith",
+        "url": "https://example.com/"
+      }
+    },
+    "color": {
+      "string": "#123456",
+      "rgbaTuple": "rgba(1,2,3,0.5)"
+    },
+    "themeColor": {
+      "single": {
+        "light": "#abcdef",
+        "dark": "#abcdef"
+      },
+      "pair": {
+        "light": "#ffffff",
+        "dark": "#000000"
+      }
+    },
+    "style": {
+      "explicit": {
+        "textColor": {
+          "light": "#111111",
+          "dark": "#111111"
+        },
+        "backgroundColor": {
+          "light": "#eeeeee",
+          "dark": "#eeeeee"
+        }
+      },
+      "auto": {
+        "textColor": {
+          "light": "#000000",
+          "dark": "#ffffff"
+        },
+        "backgroundColor": {
+          "light": "#ffffff",
+          "dark": "#000000"
+        }
+      },
+      "autoGreen": {
+        "textColor": {
+          "light": "#000000",
+          "dark": "#000000"
+        },
+        "backgroundColor": {
+          "light": "#00c000",
+          "dark": "#00c000"
+        }
+      },
+      "autoShortHex": {
+        "textColor": {
+          "light": "#000000",
+          "dark": "#000000"
+        },
+        "backgroundColor": {
+          "light": "#0c0",
+          "dark": "#0c0"
+        }
+      }
+    },
+    "markers": {
+      "modernPrecedence": [
+        {
+          "id": "girls",
+          "label": "Girls",
+          "style": "pink"
+        }
+      ],
+      "emptyModern": [],
+      "legacy": [
+        {
+          "id": "official",
+          "label": "Official",
+          "style": "blue"
+        }
+      ],
+      "missingConfig": []
+    }
+  },
+  "ranklist": {
+    "sortedRows": [
+      "solved-more",
+      "fast",
+      "slow"
+    ],
+    "regenerated": {
+      "type": "general",
+      "version": "0.3.9",
+      "contest": {
+        "title": "Contest",
+        "startAt": "2026-01-01T00:00:00+08:00",
+        "duration": [
+          5,
+          "h"
+        ]
+      },
+      "problems": [
+        {
+          "alias": "A",
+          "statistics": {
+            "accepted": 3,
+            "submitted": 4
+          }
+        },
+        {
+          "alias": "B",
+          "statistics": {
+            "accepted": 1,
+            "submitted": 2
+          }
+        }
+      ],
+      "series": [
+        {
+          "title": "Rank",
+          "rule": {
+            "preset": "Normal"
+          }
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {}
+      },
+      "rows": [
+        {
+          "user": {
+            "id": "u1",
+            "name": "u1"
+          },
+          "score": {
+            "value": 2,
+            "time": [
+              11400000,
+              "ms"
+            ]
+          },
+          "statuses": [
+            {
+              "result": "AC",
+              "solutions": [
+                {
+                  "result": "WA",
+                  "time": [
+                    10,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "CE",
+                  "time": [
+                    15,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "AC",
+                  "time": [
+                    50,
+                    "min"
+                  ]
+                }
+              ],
+              "tries": 2,
+              "time": [
+                50,
+                "min"
+              ]
+            },
+            {
+              "result": "AC",
+              "solutions": [
+                {
+                  "result": "AC",
+                  "time": [
+                    120,
+                    "min"
+                  ]
+                }
+              ],
+              "time": [
+                120,
+                "min"
+              ],
+              "tries": 1
+            }
+          ]
+        },
+        {
+          "user": {
+            "id": "u3",
+            "name": "u3",
+            "official": false
+          },
+          "score": {
+            "value": 1,
+            "time": [
+              1200000,
+              "ms"
+            ]
+          },
+          "statuses": [
+            {
+              "result": "AC",
+              "solutions": [
+                {
+                  "result": "AC",
+                  "time": [
+                    20,
+                    "min"
+                  ]
+                }
+              ],
+              "time": [
+                20,
+                "min"
+              ],
+              "tries": 1
+            },
+            {
+              "result": null,
+              "solutions": []
+            }
+          ]
+        },
+        {
+          "user": {
+            "id": "u2",
+            "name": "u2"
+          },
+          "score": {
+            "value": 1,
+            "time": [
+              1800000,
+              "ms"
+            ]
+          },
+          "statuses": [
+            {
+              "result": "AC",
+              "solutions": [
+                {
+                  "result": "AC",
+                  "time": [
+                    30,
+                    "min"
+                  ]
+                }
+              ],
+              "time": [
+                30,
+                "min"
+              ],
+              "tries": 1
+            },
+            {
+              "result": "RJ",
+              "solutions": [
+                {
+                  "result": "WA",
+                  "time": [
+                    100,
+                    "min"
+                  ]
+                }
+              ],
+              "tries": 1
+            }
+          ]
+        }
+      ]
+    },
+    "defaultNoPenalty": {
+      "type": "general",
+      "version": "0.3.9",
+      "contest": {
+        "title": "Contest",
+        "startAt": "2026-01-01T00:00:00+08:00",
+        "duration": [
+          5,
+          "h"
+        ]
+      },
+      "problems": [
+        {
+          "alias": "A",
+          "statistics": {
+            "accepted": 1,
+            "submitted": 3
+          }
+        }
+      ],
+      "series": [
+        {
+          "title": "Rank",
+          "rule": {
+            "preset": "Normal"
+          }
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {}
+      },
+      "rows": [
+        {
+          "user": {
+            "id": "u1",
+            "name": "u1"
+          },
+          "score": {
+            "value": 1,
+            "time": [
+              4200000,
+              "ms"
+            ]
+          },
+          "statuses": [
+            {
+              "result": "AC",
+              "solutions": [
+                {
+                  "result": "WA",
+                  "time": [
+                    10,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "CE",
+                  "time": [
+                    15,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "WA",
+                  "time": [
+                    20,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "?",
+                  "time": [
+                    25,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "AC",
+                  "time": [
+                    30,
+                    "min"
+                  ]
+                }
+              ],
+              "tries": 3,
+              "time": [
+                30,
+                "min"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "customNoPenalty": {
+      "type": "general",
+      "version": "0.3.9",
+      "contest": {
+        "title": "Contest",
+        "startAt": "2026-01-01T00:00:00+08:00",
+        "duration": [
+          5,
+          "h"
+        ]
+      },
+      "problems": [
+        {
+          "alias": "A",
+          "statistics": {
+            "accepted": 1,
+            "submitted": 2
+          }
+        }
+      ],
+      "series": [
+        {
+          "title": "Rank",
+          "rule": {
+            "preset": "Normal"
+          }
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {
+          "noPenaltyResults": [
+            "FB",
+            "AC",
+            "?",
+            "NOUT",
+            "UKE",
+            null
+          ]
+        }
+      },
+      "rows": [
+        {
+          "user": {
+            "id": "u1",
+            "name": "u1"
+          },
+          "score": {
+            "value": 1,
+            "time": [
+              3000000,
+              "ms"
+            ]
+          },
+          "statuses": [
+            {
+              "result": "AC",
+              "solutions": [
+                {
+                  "result": "CE",
+                  "time": [
+                    10,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "AC",
+                  "time": [
+                    30,
+                    "min"
+                  ]
+                }
+              ],
+              "tries": 2,
+              "time": [
+                30,
+                "min"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "postAc": {
+      "type": "general",
+      "version": "0.3.9",
+      "contest": {
+        "title": "Contest",
+        "startAt": "2026-01-01T00:00:00+08:00",
+        "duration": [
+          5,
+          "h"
+        ]
+      },
+      "problems": [
+        {
+          "alias": "A",
+          "statistics": {
+            "accepted": 1,
+            "submitted": 2
+          }
+        }
+      ],
+      "series": [
+        {
+          "title": "Rank",
+          "rule": {
+            "preset": "Normal"
+          }
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {}
+      },
+      "rows": [
+        {
+          "user": {
+            "id": "u1",
+            "name": "u1"
+          },
+          "score": {
+            "value": 1,
+            "time": [
+              2400000,
+              "ms"
+            ]
+          },
+          "statuses": [
+            {
+              "result": "AC",
+              "solutions": [
+                {
+                  "result": "WA",
+                  "time": [
+                    10,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "AC",
+                  "time": [
+                    20,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "WA",
+                  "time": [
+                    30,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "FB",
+                  "time": [
+                    40,
+                    "min"
+                  ]
+                }
+              ],
+              "tries": 2,
+              "time": [
+                20,
+                "min"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "timePrecision": {
+      "type": "general",
+      "version": "0.3.9",
+      "contest": {
+        "title": "Contest",
+        "startAt": "2026-01-01T00:00:00+08:00",
+        "duration": [
+          5,
+          "h"
+        ]
+      },
+      "problems": [
+        {
+          "alias": "A",
+          "statistics": {
+            "accepted": 1,
+            "submitted": 1
+          }
+        }
+      ],
+      "series": [
+        {
+          "title": "Rank",
+          "rule": {
+            "preset": "Normal"
+          }
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {
+          "timePrecision": "min",
+          "timeRounding": "ceil"
+        }
+      },
+      "rows": [
+        {
+          "user": {
+            "id": "u1",
+            "name": "u1"
+          },
+          "score": {
+            "value": 1,
+            "time": [
+              180000,
+              "ms"
+            ]
+          },
+          "statuses": [
+            {
+              "result": "AC",
+              "solutions": [
+                {
+                  "result": "AC",
+                  "time": [
+                    125,
+                    "s"
+                  ]
+                }
+              ],
+              "time": [
+                125,
+                "s"
+              ],
+              "tries": 1
+            }
+          ]
+        }
+      ]
+    },
+    "rankingPrecisionOrder": [
+      "slow-original-first",
+      "fast-original-second"
+    ],
+    "incrementalRows": [
+      {
+        "user": {
+          "id": "u2",
+          "name": "u2"
+        },
+        "score": {
+          "value": 1,
+          "time": [
+            1200000,
+            "ms"
+          ]
+        },
+        "statuses": [
+          {
+            "result": "AC",
+            "solutions": [
+              {
+                "result": "AC",
+                "time": [
+                  20,
+                  "min"
+                ]
+              }
+            ],
+            "time": [
+              20,
+              "min"
+            ],
+            "tries": 1
+          }
+        ]
+      },
+      {
+        "user": {
+          "id": "u1",
+          "name": "u1"
+        },
+        "score": {
+          "value": 1,
+          "time": [
+            3300000,
+            "ms"
+          ]
+        },
+        "statuses": [
+          {
+            "result": "AC",
+            "solutions": [
+              {
+                "result": "WA",
+                "time": [
+                  10,
+                  "min"
+                ]
+              },
+              {
+                "result": "CE",
+                "time": [
+                  15,
+                  "min"
+                ]
+              },
+              {
+                "result": "AC",
+                "time": [
+                  35,
+                  "min"
+                ]
+              }
+            ],
+            "tries": 2,
+            "time": [
+              35,
+              "min"
+            ]
+          }
+        ]
+      }
+    ],
+    "incrementalPostAcRows": [
+      {
+        "user": {
+          "id": "u1",
+          "name": "u1"
+        },
+        "score": {
+          "value": 1,
+          "time": [
+            20,
+            "min"
+          ]
+        },
+        "statuses": [
+          {
+            "result": "AC",
+            "time": [
+              20,
+              "min"
+            ],
+            "tries": 1,
+            "solutions": [
+              {
+                "result": "AC",
+                "time": [
+                  20,
+                  "min"
+                ]
+              },
+              {
+                "result": "WA",
+                "time": [
+                  30,
+                  "min"
+                ]
+              },
+              {
+                "result": "AC",
+                "time": [
+                  40,
+                  "min"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "staticRankValues": [
+      [
+        {
+          "rank": 1,
+          "segmentIndex": null
+        },
+        {
+          "rank": 1,
+          "segmentIndex": null
+        },
+        {
+          "rank": 1,
+          "segmentIndex": null
+        },
+        {
+          "rank": 1,
+          "segmentIndex": 0
+        }
+      ],
+      [
+        {
+          "rank": 1,
+          "segmentIndex": null
+        },
+        {
+          "rank": 1,
+          "segmentIndex": null
+        },
+        {
+          "rank": null,
+          "segmentIndex": null
+        },
+        {
+          "rank": 1,
+          "segmentIndex": 1
+        }
+      ],
+      [
+        {
+          "rank": 3,
+          "segmentIndex": null
+        },
+        {
+          "rank": null,
+          "segmentIndex": null
+        },
+        {
+          "rank": 2,
+          "segmentIndex": null
+        },
+        {
+          "rank": null,
+          "segmentIndex": null
+        }
+      ],
+      [
+        {
+          "rank": 4,
+          "segmentIndex": null
+        },
+        {
+          "rank": 3,
+          "segmentIndex": null
+        },
+        {
+          "rank": null,
+          "segmentIndex": null
+        },
+        {
+          "rank": 3,
+          "segmentIndex": null
+        }
+      ]
+    ],
+    "markerRankValues": [
+      {
+        "rank": 1,
+        "segmentIndex": 0
+      },
+      {
+        "rank": null,
+        "segmentIndex": null
+      },
+      {
+        "rank": 2,
+        "segmentIndex": 1
+      }
+    ],
+    "invalidFilterRankValue": {
+      "rank": null,
+      "segmentIndex": null
+    },
+    "ratioRankValues": [
+      {
+        "rank": 1,
+        "segmentIndex": 0
+      },
+      {
+        "rank": 2,
+        "segmentIndex": 1
+      },
+      {
+        "rank": 3,
+        "segmentIndex": 1
+      },
+      {
+        "rank": 4,
+        "segmentIndex": null
+      },
+      {
+        "rank": 5,
+        "segmentIndex": null
+      },
+      {
+        "rank": 6,
+        "segmentIndex": null
+      },
+      {
+        "rank": 7,
+        "segmentIndex": null
+      },
+      {
+        "rank": 8,
+        "segmentIndex": null
+      },
+      {
+        "rank": 9,
+        "segmentIndex": null
+      },
+      {
+        "rank": 10,
+        "segmentIndex": null
+      }
+    ],
+    "strictIdRankValues": [
+      {
+        "rank": 1,
+        "segmentIndex": 0
+      },
+      {
+        "rank": null,
+        "segmentIndex": 0
+      }
+    ]
+  }
+}

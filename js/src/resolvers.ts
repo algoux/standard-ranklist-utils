@@ -12,9 +12,10 @@ import { ThemeColor } from './types';
  * If no exact lookup result is found, a primary-language match is attempted before using the `fallback` field.
  *
  * @param text - Plain text or i18n text object.
+ * @param languages - Optional preferred BCP 47 language tags. Browser `navigator.languages` is used when omitted.
  * @returns Resolved display string, or an empty string for missing text.
  */
-export function resolveText(text: srk.Text | undefined): string {
+export function resolveText(text: srk.Text | undefined, languages?: readonly string[]): string {
   if (text === undefined) {
     return '';
   }
@@ -25,7 +26,7 @@ export function resolveText(text: srk.Text | undefined): string {
       .filter((k) => k && k !== 'fallback')
       .sort()
       .reverse();
-    const userLangs = (typeof navigator !== 'undefined' && [...navigator.languages]) || [];
+    const userLangs = languages ? [...languages] : (typeof navigator !== 'undefined' && [...navigator.languages]) || [];
     const usingLang =
       langLookup(userLangs, langs) ||
       userLangs

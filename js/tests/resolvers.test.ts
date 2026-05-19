@@ -55,6 +55,11 @@ describe('resolvers', () => {
     }
   });
 
+  test('resolveText accepts explicit language preferences for non-browser callers', () => {
+    assert.equal(resolveText({ fallback: 'Fallback', 'en-US': 'English', 'zh-CN': '中文' }, ['en-GB']), 'English');
+    assert.equal(resolveText({ fallback: 'Fallback', 'zh-CN': '中文' }, ['fr-FR']), 'Fallback');
+  });
+
   test('resolveContributor parses contributor metadata from package-style strings', () => {
     assert.equal(resolveContributor(undefined), null);
     assert.deepEqual(resolveContributor('Alice'), {
