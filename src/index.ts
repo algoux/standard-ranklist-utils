@@ -4,3 +4,4 @@ export * from './types';
 export * from './formatters';
 export * from './resolvers';
 export * from './ranklist';
+export * from './diagnostics';

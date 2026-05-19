@@ -10,6 +10,24 @@ Make sure you have installed the `@algoux/standard-ranklist` package, then insta
 npm i -S @algoux/standard-ranklist-utils
 ```
 
+## CLI
+
+After installation, run a comprehensive diagnostics report for an srk JSON file:
+
+```shell
+srk-diagnose ./ranklist.json
+```
+
+Use JSON output to receive the raw `diagnoseRanklist()` result object:
+
+```shell
+srk-diagnose ./ranklist.json --format json
+# or
+srk-diagnose ./ranklist.json --json
+```
+
+The friendly report uses colored status labels for diagnostic meaning; JSON output keeps the raw boolean fields unchanged.
+
 ## Utilities
 
 ### formatters
@@ -39,3 +57,12 @@ npm i -S @algoux/standard-ranklist-utils
 - `regenerateRanklistBySolutions`: Rebuild rows, scores, sorting, and problem statistics from solution tetrads.
 - `regenerateRowsByIncrementalSolutions`: Apply incremental solution tetrads to existing rows and re-sort them.
 - `convertToStaticRanklist`: Add precomputed per-series rank values and segment indexes to each row.
+
+### diagnostics
+
+- `checkProblemStatistics`: Compare declared problem statistics with values computed from row solutions.
+- `checkSeriesConfiguration`: Summarize ICPC series configuration and report missing or empty ICPC segment allocation.
+- `checkFB`: Compute and validate FB declarations, including computed/declared multi-FB states; `shouldOverride` is reserved for FB result changes rather than time-only mismatches.
+- `checkRanklistDataValidity`: Check row/status/score/statistics consistency, structural validity, marker references, row order, and possible ICPC score time precision configs.
+- `analyzeRanklistMetadata`: Inspect derived metadata such as true submission precision, FB availability, colors, and rich user data.
+- `diagnoseRanklist`: Run the full diagnostics suite and return a complete report.
