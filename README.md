@@ -10,9 +10,9 @@ that baseline so ranklist regeneration and rendering helpers stay aligned across
 
 | Language | Directory | Package |
 | --- | --- | --- |
-| JavaScript/TypeScript | `js/` | `@algoux/standard-ranklist-utils` |
-| Python | `python/` | `algoux-standard-ranklist-utils` (`standard_ranklist_utils`) |
-| Go | `go/` | `github.com/algoux/standard-ranklist-utils/go` |
+| JavaScript/TypeScript | `js/` | [@algoux/standard-ranklist-utils](https://www.npmjs.com/package/@algoux/standard-ranklist-utils) |
+| Python | `python/` | [algoux-standard-ranklist-utils](https://pypi.org/project/algoux-standard-ranklist-utils/) (`standard_ranklist_utils`) |
+| Go | `go/` | [github.com/algoux/standard-ranklist-utils/go](https://pkg.go.dev/github.com/algoux/standard-ranklist-utils/go) |
 
 All packages support srk `>=0.3.0 <0.4.0`. Regeneration helpers require srk `0.3.0` or later and the ICPC sorter.
 
