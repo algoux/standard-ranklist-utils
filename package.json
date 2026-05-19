@@ -1,67 +1,18 @@
 {
-  "name": "@algoux/standard-ranklist-utils",
-  "version": "0.2.13",
-  "author": "bLue",
-  "keywords": [
-    "standard ranklist",
-    "srk",
-    "utils"
-  ],
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.cts",
-  "exports": {
-    "require": {
-      "types": "./dist/index.d.cts",
-      "default": "./dist/index.cjs"
-    },
-    "import": {
-      "types": "./dist/index.d.mts",
-      "default": "./dist/index.mjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
+  "name": "standard-ranklist-utils-monorepo",
+  "private": true,
+  "version": "0.3.0",
   "scripts": {
-    "dev": "tsx src/index.ts",
-    "test": "tsc --noEmit -p tsconfig.test.json && node --import tsx --test tests/*.test.ts",
-    "build": "pkgroll",
-    "prepublishOnly": "npm run build"
+    "prepack": "node scripts/prevent-root-pack.mjs",
+    "sync:fixtures": "pnpm -C js generate:fixtures && node scripts/sync-fixtures.mjs",
+    "check:fixtures": "node scripts/check-fixtures.mjs",
+    "verify:fixtures": "pnpm run sync:fixtures && git diff --exit-code -- testdata/contract-fixtures.json python/tests/fixtures/contract-fixtures.json go/testdata/fixtures/contract-fixtures.json",
+    "test:js": "pnpm -C js test",
+    "build:js": "pnpm -C js build",
+    "test:python": "node scripts/run-python-tests.mjs",
+    "test:go": "node scripts/run-go-tests.mjs",
+    "test": "pnpm run verify:fixtures && pnpm run test:js && pnpm run test:python && pnpm run test:go"
   },
-  "dependencies": {
-    "@types/semver": "^7.5.0",
-    "bcp-47-match": "^2.0.2",
-    "bignumber.js": "^9.1.1",
-    "semver": "^7.5.4",
-    "textcolor": "^1.0.2"
-  },
-  "devDependencies": {
-    "@algoux/standard-ranklist": "^0.3.9",
-    "@types/node": "^16.18.38",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
-    "eslint": "^8.44.0",
-    "eslint-config-alloy": "^4.0.0",
-    "pkgroll": "~2.3.0",
-    "prettier": "^2.7.1",
-    "rimraf": "^5.0.1",
-    "tsx": "^4.19.4",
-    "typescript": "^4.9.5"
-  },
-  "peerDependencies": {
-    "@algoux/standard-ranklist": "*"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/algoux/standard-ranklist-utils.git"
-  },
-  "bugs": {
-    "url": "https://github.com/algoux/standard-ranklist-utils/issues"
-  },
-  "homepage": "https://github.com/algoux/standard-ranklist-utils#readme",
-  "srkSupportedVersions": ">=0.3.0 <0.4.0",
   "pnpm": {
     "overrides": {
       "esbuild": "0.23.1"

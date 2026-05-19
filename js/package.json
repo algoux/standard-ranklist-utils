@@ -1,0 +1,67 @@
+{
+  "name": "@algoux/standard-ranklist-utils",
+  "version": "0.3.0",
+  "author": "bLue",
+  "keywords": [
+    "standard ranklist",
+    "srk",
+    "utils"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    },
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "generate:fixtures": "tsx scripts/generate-fixtures.ts",
+    "test": "tsc --noEmit -p tsconfig.test.json && node --import tsx --test tests/*.test.ts",
+    "build": "pkgroll",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@types/semver": "^7.5.0",
+    "bcp-47-match": "^2.0.2",
+    "bignumber.js": "^9.1.1",
+    "semver": "^7.5.4",
+    "textcolor": "^1.0.2"
+  },
+  "devDependencies": {
+    "@algoux/standard-ranklist": "^0.3.9",
+    "@types/node": "^16.18.38",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "eslint": "^8.44.0",
+    "eslint-config-alloy": "^4.0.0",
+    "pkgroll": "~2.3.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^5.0.1",
+    "tsx": "^4.19.4",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "@algoux/standard-ranklist": "*"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algoux/standard-ranklist-utils.git",
+    "directory": "js"
+  },
+  "bugs": {
+    "url": "https://github.com/algoux/standard-ranklist-utils/issues"
+  },
+  "homepage": "https://github.com/algoux/standard-ranklist-utils#readme",
+  "srkSupportedVersions": ">=0.3.0 <0.4.0"
+}

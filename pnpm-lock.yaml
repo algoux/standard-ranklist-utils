@@ -7,57 +7,61 @@ settings:
 overrides:
   esbuild: 0.23.1
 
-dependencies:
-  '@types/semver':
-    specifier: ^7.5.0
-    version: 7.5.0
-  bcp-47-match:
-    specifier: ^2.0.2
-    version: 2.0.2
-  bignumber.js:
-    specifier: ^9.1.1
-    version: 9.1.1
-  semver:
-    specifier: ^7.5.4
-    version: 7.5.4
-  textcolor:
-    specifier: ^1.0.2
-    version: 1.0.2
+importers:
 
-devDependencies:
-  '@algoux/standard-ranklist':
-    specifier: ^0.3.9
-    version: 0.3.9
-  '@types/node':
-    specifier: ^16.18.38
-    version: 16.18.38
-  '@typescript-eslint/eslint-plugin':
-    specifier: ^5.61.0
-    version: 5.61.0(@typescript-eslint/parser@5.61.0)(eslint@8.44.0)(typescript@4.9.5)
-  '@typescript-eslint/parser':
-    specifier: ^5.61.0
-    version: 5.61.0(eslint@8.44.0)(typescript@4.9.5)
-  eslint:
-    specifier: ^8.44.0
-    version: 8.44.0
-  eslint-config-alloy:
-    specifier: ^4.0.0
-    version: 4.0.0
-  pkgroll:
-    specifier: ~2.3.0
-    version: 2.3.0(typescript@4.9.5)
-  prettier:
-    specifier: ^2.7.1
-    version: 2.7.1
-  rimraf:
-    specifier: ^5.0.1
-    version: 5.0.1
-  tsx:
-    specifier: ^4.19.4
-    version: 4.19.4
-  typescript:
-    specifier: ^4.9.5
-    version: 4.9.5
+  .: {}
+
+  js:
+    dependencies:
+      '@types/semver':
+        specifier: ^7.5.0
+        version: 7.5.0
+      bcp-47-match:
+        specifier: ^2.0.2
+        version: 2.0.2
+      bignumber.js:
+        specifier: ^9.1.1
+        version: 9.1.1
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
+      textcolor:
+        specifier: ^1.0.2
+        version: 1.0.2
+    devDependencies:
+      '@algoux/standard-ranklist':
+        specifier: ^0.3.9
+        version: 0.3.9
+      '@types/node':
+        specifier: ^16.18.38
+        version: 16.18.38
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^5.61.0
+        version: 5.61.0(@typescript-eslint/parser@5.61.0)(eslint@8.44.0)(typescript@4.9.5)
+      '@typescript-eslint/parser':
+        specifier: ^5.61.0
+        version: 5.61.0(eslint@8.44.0)(typescript@4.9.5)
+      eslint:
+        specifier: ^8.44.0
+        version: 8.44.0
+      eslint-config-alloy:
+        specifier: ^4.0.0
+        version: 4.0.0
+      pkgroll:
+        specifier: ~2.3.0
+        version: 2.3.0(typescript@4.9.5)
+      prettier:
+        specifier: ^2.7.1
+        version: 2.7.1
+      rimraf:
+        specifier: ^5.0.1
+        version: 5.0.1
+      tsx:
+        specifier: ^4.19.4
+        version: 4.19.4
+      typescript:
+        specifier: ^4.9.5
+        version: 4.9.5
 
 packages:
 
@@ -326,6 +330,7 @@ packages:
   /@humanwhocodes/config-array@0.11.10:
     resolution: {integrity: sha512-KVVjQmNUepDVGXNuoRRdmmEjruj0KfiGSbS8LVc12LMsWDQzRXJ0qdhN8L8uUigKpfEHRhlaQFY0ib1tnUbNeQ==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
     dependencies:
       '@humanwhocodes/object-schema': 1.2.1
       debug: 4.3.4
@@ -341,6 +346,7 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    deprecated: Use @eslint/object-schema instead
     dev: true
 
   /@isaacs/cliui@8.0.2:
@@ -1039,6 +1045,7 @@ packages:
   /eslint@8.44.0:
     resolution: {integrity: sha512-0wpHoUbDUHgNCyvFB5aXLiQVfK9B0at6gUvzy83k4kAsQ/u769TQDX6iKC+aO4upIHO9WSaA3QoXYQDHbNwf1A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@8.44.0)
@@ -1236,6 +1243,7 @@ packages:
   /glob@10.3.3:
     resolution: {integrity: sha512-92vPiMb/iqpmEgsOoIDvTjc50wf9CCCvMzsi6W0JLPeUKE8TWP1a73PgqSrqy7iAZxaSD1YdzU7QZR5LF51MJw==}
     engines: {node: '>=16 || 14 >=14.17'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
     dependencies:
       foreground-child: 3.1.1
@@ -1247,6 +1255,7 @@ packages:
 
   /glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -1259,7 +1268,7 @@ packages:
   /glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -1323,6 +1332,7 @@ packages:
 
   /inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
     dependencies:
       once: 1.4.0
       wrappy: 1.0.2
@@ -1640,6 +1650,7 @@ packages:
 
   /rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
