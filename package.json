@@ -1,7 +1,8 @@
 {
   "name": "standard-ranklist-utils-monorepo",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.0.0",
+  "packageManager": "pnpm@8.15.9",
   "scripts": {
     "prepack": "node scripts/prevent-root-pack.mjs",
     "sync:fixtures": "pnpm -C js generate:fixtures && node scripts/sync-fixtures.mjs",

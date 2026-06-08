@@ -94,6 +94,21 @@ const defaultNoPenaltySolutions: CalculatedSolutionTetrad[] = [
   ['u1', 0, 'AC', [30, 'min']],
 ];
 
+const unknownNoAcInput = makeRanklist({
+  problems: [{ alias: 'A' }],
+  rows: [makeRow('u1', { value: 0, time: [0, 'ms'] }, [{ result: null, solutions: [] }])],
+});
+const unknownNoAcSolutions: CalculatedSolutionTetrad[] = [
+  ['u1', 0, 'WA', [1, 'min']],
+  ['u1', 0, 'CE', [2, 'min']],
+  ['u1', 0, 'NOUT', [3, 'min']],
+  ['u1', 0, 'UKE', [4, 'min']],
+  ['u1', 0, 'WA', [5, 'min']],
+  ['u1', 0, '?', [6, 'min']],
+  ['u1', 0, '?', [7, 'min']],
+  ['u1', 0, '?', [8, 'min']],
+];
+
 const customNoPenaltyInput = makeRanklist({
   problems: [{ alias: 'A' }],
   rows: [makeRow('u1', { value: 0, time: [0, 'ms'] }, [{ result: null, solutions: [] }])],
@@ -323,6 +338,7 @@ const fixtures = {
     ]).map((row) => row.user.id),
     regenerated: regenerateRanklistBySolutions(regenerationInput, regenerationSolutions),
     defaultNoPenalty: regenerateRanklistBySolutions(defaultNoPenaltyInput, defaultNoPenaltySolutions),
+    unknownNoAc: regenerateRanklistBySolutions(unknownNoAcInput, unknownNoAcSolutions),
     customNoPenalty: regenerateRanklistBySolutions(customNoPenaltyInput, [
       ['u1', 0, 'CE', [10, 'min']],
       ['u1', 0, 'AC', [30, 'min']],

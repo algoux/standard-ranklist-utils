@@ -125,13 +125,12 @@ def regenerate_ranklist_by_solutions(original_ranklist: dict[str, Any], solution
                 result = solution.get("result")
                 if not result:
                     continue
-                is_no_penalty = result in (sorter_config.get("noPenaltyResults") or [])
                 if result == "?":
                     status["result"] = result
-                    if not is_no_penalty:
-                        status["tries"] = (status.get("tries") or 0) + 1
-                        problem_submitted_count[index] += 1
+                    status["tries"] = (status.get("tries") or 0) + 1
+                    problem_submitted_count[index] += 1
                     continue
+                is_no_penalty = result in (sorter_config.get("noPenaltyResults") or [])
                 if result in ("AC", "FB"):
                     status["result"] = result
                     status["time"] = solution["time"]
@@ -198,12 +197,11 @@ def regenerate_rows_by_incremental_solutions(
         status["solutions"].append({"result": result, "time": time})
         if status.get("result") in ("AC", "FB"):
             continue
-        is_no_penalty = result in (sorter_config.get("noPenaltyResults") or [])
         if result == "?":
             status["result"] = result
-            if not is_no_penalty:
-                status["tries"] = (status.get("tries") or 0) + 1
+            status["tries"] = (status.get("tries") or 0) + 1
             continue
+        is_no_penalty = result in (sorter_config.get("noPenaltyResults") or [])
         if result in ("AC", "FB"):
             status["result"] = result
             status["time"] = time

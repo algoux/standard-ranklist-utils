@@ -205,6 +205,21 @@ func TestRanklistRegenerationAndStaticRanksMatchContract(t *testing.T) {
 		array("u1", 0, "AC", array(30, "min")),
 	}), expected["defaultNoPenalty"])
 
+	unknownNoAC := makeRanklist(map[string]any{
+		"problems": array(object(map[string]any{"alias": "A"})),
+		"rows":     array(makeRow("u1", object(map[string]any{"value": 0, "time": array(0, "ms")}), array(object(map[string]any{"result": nil, "solutions": array()})), nil)),
+	})
+	assertJSONEqual(t, RegenerateRanklistBySolutions(unknownNoAC, [][]any{
+		array("u1", 0, "WA", array(1, "min")),
+		array("u1", 0, "CE", array(2, "min")),
+		array("u1", 0, "NOUT", array(3, "min")),
+		array("u1", 0, "UKE", array(4, "min")),
+		array("u1", 0, "WA", array(5, "min")),
+		array("u1", 0, "?", array(6, "min")),
+		array("u1", 0, "?", array(7, "min")),
+		array("u1", 0, "?", array(8, "min")),
+	}), expected["unknownNoAc"])
+
 	customNoPenalty := makeRanklist(map[string]any{
 		"problems": array(object(map[string]any{"alias": "A"})),
 		"rows":     array(makeRow("u1", object(map[string]any{"value": 0, "time": array(0, "ms")}), array(object(map[string]any{"result": nil, "solutions": array()})), nil)),

@@ -242,15 +242,13 @@ func RegenerateRanklistBySolutions(originalRanklist map[string]any, solutions []
 				if result == nil || stringValue(result) == "" {
 					continue
 				}
-				isNoPenalty := containsValue(noPenalty, result)
 				if result == "?" {
 					status["result"] = result
-					if !isNoPenalty {
-						status["tries"] = numberValue(status["tries"]) + 1
-						submitted[i]++
-					}
+					status["tries"] = numberValue(status["tries"]) + 1
+					submitted[i]++
 					continue
 				}
+				isNoPenalty := containsValue(noPenalty, result)
 				if result == "AC" || result == "FB" {
 					status["result"] = result
 					status["time"] = solution["time"]
@@ -325,14 +323,12 @@ func RegenerateRowsByIncrementalSolutions(originalRanklist map[string]any, solut
 			continue
 		}
 		result := tetrad[2]
-		isNoPenalty := containsValue(noPenalty, result)
 		if result == "?" {
 			status["result"] = result
-			if !isNoPenalty {
-				status["tries"] = numberValue(status["tries"]) + 1
-			}
+			status["tries"] = numberValue(status["tries"]) + 1
 			continue
 		}
+		isNoPenalty := containsValue(noPenalty, result)
 		if result == "AC" || result == "FB" {
 			status["result"] = result
 			status["time"] = tetrad[3]

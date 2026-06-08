@@ -228,7 +228,7 @@ describe('ranklist utilities', () => {
 
     const regenerated = regenerateRanklistBySolutions(originalRanklist, solutions);
 
-    assert.deepEqual(regenerated.rows[0].score, { value: 1, time: [4200000, 'ms'] });
+    assert.deepEqual(regenerated.rows[0].score, { value: 1, time: [5400000, 'ms'] });
     assert.deepEqual(regenerated.rows[0].statuses[0], {
       result: 'AC',
       solutions: [
@@ -238,10 +238,46 @@ describe('ranklist utilities', () => {
         { result: '?', time: [25, 'min'] },
         { result: 'AC', time: [30, 'min'] },
       ],
-      tries: 3,
+      tries: 4,
       time: [30, 'min'],
     });
-    assert.deepEqual(regenerated.problems[0].statistics, { accepted: 1, submitted: 3 });
+    assert.deepEqual(regenerated.problems[0].statistics, { accepted: 1, submitted: 4 });
+  });
+
+  test('regenerateRanklistBySolutions counts unknown results as submitted tries before any accepted solution', () => {
+    const originalRanklist = makeRanklist({
+      problems: [{ alias: 'A' }],
+      rows: [makeRow('u1', { value: 0, time: [0, 'ms'] }, [{ result: null, solutions: [] }])],
+    });
+    const solutions: CalculatedSolutionTetrad[] = [
+      ['u1', 0, 'WA', [1, 'min']],
+      ['u1', 0, 'CE', [2, 'min']],
+      ['u1', 0, 'NOUT', [3, 'min']],
+      ['u1', 0, 'UKE', [4, 'min']],
+      ['u1', 0, 'WA', [5, 'min']],
+      ['u1', 0, '?', [6, 'min']],
+      ['u1', 0, '?', [7, 'min']],
+      ['u1', 0, '?', [8, 'min']],
+    ];
+
+    const regenerated = regenerateRanklistBySolutions(originalRanklist, solutions);
+
+    assert.deepEqual(regenerated.rows[0].score, { value: 0, time: [0, 'ms'] });
+    assert.deepEqual(regenerated.rows[0].statuses[0], {
+      result: '?',
+      solutions: [
+        { result: 'WA', time: [1, 'min'] },
+        { result: 'CE', time: [2, 'min'] },
+        { result: 'NOUT', time: [3, 'min'] },
+        { result: 'UKE', time: [4, 'min'] },
+        { result: 'WA', time: [5, 'min'] },
+        { result: '?', time: [6, 'min'] },
+        { result: '?', time: [7, 'min'] },
+        { result: '?', time: [8, 'min'] },
+      ],
+      tries: 5,
+    });
+    assert.deepEqual(regenerated.problems[0].statistics, { accepted: 0, submitted: 5 });
   });
 
   test('regenerateRanklistBySolutions honors custom noPenaltyResults when scoring tries', () => {
@@ -402,6 +438,40 @@ describe('ranklist utilities', () => {
         { result: 'WA', time: [30, 'min'] },
         { result: 'AC', time: [40, 'min'] },
       ],
+    });
+  });
+
+  test('regenerateRowsByIncrementalSolutions counts unknown results as submitted tries', () => {
+    const originalRanklist = makeRanklist({
+      problems: [{ alias: 'A' }],
+      rows: [makeRow('u1', { value: 0, time: [0, 'ms'] }, [{ result: null, solutions: [] }])],
+    });
+
+    const regeneratedRows = regenerateRowsByIncrementalSolutions(originalRanklist, [
+      ['u1', 0, 'WA', [1, 'min']],
+      ['u1', 0, 'CE', [2, 'min']],
+      ['u1', 0, 'NOUT', [3, 'min']],
+      ['u1', 0, 'UKE', [4, 'min']],
+      ['u1', 0, 'WA', [5, 'min']],
+      ['u1', 0, '?', [6, 'min']],
+      ['u1', 0, '?', [7, 'min']],
+      ['u1', 0, '?', [8, 'min']],
+    ]);
+
+    assert.deepEqual(regeneratedRows[0].score, { value: 0, time: [0, 'ms'] });
+    assert.deepEqual(regeneratedRows[0].statuses[0], {
+      result: '?',
+      solutions: [
+        { result: 'WA', time: [1, 'min'] },
+        { result: 'CE', time: [2, 'min'] },
+        { result: 'NOUT', time: [3, 'min'] },
+        { result: 'UKE', time: [4, 'min'] },
+        { result: 'WA', time: [5, 'min'] },
+        { result: '?', time: [6, 'min'] },
+        { result: '?', time: [7, 'min'] },
+        { result: '?', time: [8, 'min'] },
+      ],
+      tries: 5,
     });
   });
 

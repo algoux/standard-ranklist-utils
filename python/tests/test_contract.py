@@ -207,6 +207,27 @@ def test_ranklist_regeneration_matches_js_contract():
         == expected["defaultNoPenalty"]
     )
 
+    unknown_no_ac = make_ranklist(
+        problems=[{"alias": "A"}],
+        rows=[make_row("u1", {"value": 0, "time": [0, "ms"]}, [{"result": None, "solutions": []}])],
+    )
+    assert (
+        regenerate_ranklist_by_solutions(
+            unknown_no_ac,
+            [
+                ["u1", 0, "WA", [1, "min"]],
+                ["u1", 0, "CE", [2, "min"]],
+                ["u1", 0, "NOUT", [3, "min"]],
+                ["u1", 0, "UKE", [4, "min"]],
+                ["u1", 0, "WA", [5, "min"]],
+                ["u1", 0, "?", [6, "min"]],
+                ["u1", 0, "?", [7, "min"]],
+                ["u1", 0, "?", [8, "min"]],
+            ],
+        )
+        == expected["unknownNoAc"]
+    )
+
     custom_no_penalty = make_ranklist(
         problems=[{"alias": "A"}],
         rows=[make_row("u1", {"value": 0, "time": [0, "ms"]}, [{"result": None, "solutions": []}])],

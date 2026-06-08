@@ -348,7 +348,7 @@
           "alias": "A",
           "statistics": {
             "accepted": 1,
-            "submitted": 3
+            "submitted": 4
           }
         }
       ],
@@ -373,7 +373,7 @@
           "score": {
             "value": 1,
             "time": [
-              4200000,
+              5400000,
               "ms"
             ]
           },
@@ -417,11 +417,123 @@
                   ]
                 }
               ],
-              "tries": 3,
+              "tries": 4,
               "time": [
                 30,
                 "min"
               ]
+            }
+          ]
+        }
+      ]
+    },
+    "unknownNoAc": {
+      "type": "general",
+      "version": "0.3.9",
+      "contest": {
+        "title": "Contest",
+        "startAt": "2026-01-01T00:00:00+08:00",
+        "duration": [
+          5,
+          "h"
+        ]
+      },
+      "problems": [
+        {
+          "alias": "A",
+          "statistics": {
+            "accepted": 0,
+            "submitted": 5
+          }
+        }
+      ],
+      "series": [
+        {
+          "title": "Rank",
+          "rule": {
+            "preset": "Normal"
+          }
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {}
+      },
+      "rows": [
+        {
+          "user": {
+            "id": "u1",
+            "name": "u1"
+          },
+          "score": {
+            "value": 0,
+            "time": [
+              0,
+              "ms"
+            ]
+          },
+          "statuses": [
+            {
+              "result": "?",
+              "solutions": [
+                {
+                  "result": "WA",
+                  "time": [
+                    1,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "CE",
+                  "time": [
+                    2,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "NOUT",
+                  "time": [
+                    3,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "UKE",
+                  "time": [
+                    4,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "WA",
+                  "time": [
+                    5,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "?",
+                  "time": [
+                    6,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "?",
+                  "time": [
+                    7,
+                    "min"
+                  ]
+                },
+                {
+                  "result": "?",
+                  "time": [
+                    8,
+                    "min"
+                  ]
+                }
+              ],
+              "tries": 5
             }
           ]
         }

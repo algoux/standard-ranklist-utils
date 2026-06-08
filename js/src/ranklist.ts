@@ -272,16 +272,14 @@ export function regenerateRanklistBySolutions(
         if (!solution.result) {
           continue;
         }
-        // @ts-ignore
-        const isNoPenaltyResult = (sorterConfig.noPenaltyResults || []).includes(solution.result);
         if (solution.result === '?') {
           status.result = solution.result;
-          if (!isNoPenaltyResult) {
-            status.tries = (status.tries || 0) + 1;
-            problemSubmittedCount[i] += 1;
-          }
+          status.tries = (status.tries || 0) + 1;
+          problemSubmittedCount[i] += 1;
           continue;
         }
+        // @ts-ignore
+        const isNoPenaltyResult = (sorterConfig.noPenaltyResults || []).includes(solution.result);
         if (solution.result === 'AC' || solution.result === 'FB') {
           status.result = solution.result;
           status.time = solution.time;
@@ -397,15 +395,13 @@ export function regenerateRowsByIncrementalSolutions(
     if (status.result === 'AC' || status.result === 'FB') {
       continue;
     }
-    // @ts-ignore
-    const isNoPenaltyResult = (sorterConfig.noPenaltyResults || []).includes(result);
     if (result === '?') {
       status.result = result;
-      if (!isNoPenaltyResult) {
-        status.tries = (status.tries || 0) + 1;
-      }
+      status.tries = (status.tries || 0) + 1;
       continue;
     }
+    // @ts-ignore
+    const isNoPenaltyResult = (sorterConfig.noPenaltyResults || []).includes(result);
     if (result === 'AC' || result === 'FB') {
       status.result = result;
       status.time = time;
