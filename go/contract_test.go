@@ -171,6 +171,117 @@ func TestRanklistHelpersMatchContract(t *testing.T) {
 	assertJSONEqual(t, ids, expected["sortedRows"])
 }
 
+func TestDiagnosticsAndPatchModulesMatchContract(t *testing.T) {
+	fixtures := loadFixtures(t)
+	expected := fixture(fixtures, "diagnosticsPatch").(map[string]any)
+	ranklist := makeRanklist(map[string]any{
+		"problems": array(object(map[string]any{"alias": "A", "statistics": object(map[string]any{"accepted": 2, "submitted": 4})})),
+		"rows": array(
+			makeRow("u1", object(map[string]any{"value": 1, "time": array(70, "min")}), array(object(map[string]any{
+				"result": "AC",
+				"time":   array(30, "min"),
+				"tries":  3,
+				"solutions": array(
+					object(map[string]any{"result": "WA", "time": array(10, "min")}),
+					object(map[string]any{"result": "CE", "time": array(20, "min")}),
+					object(map[string]any{"result": "AC", "time": array(30, "min")}),
+				),
+			})), nil),
+			makeRow("u2", object(map[string]any{"value": 1, "time": array(40, "min")}), array(object(map[string]any{
+				"result":    "FB",
+				"time":      array(40, "min"),
+				"tries":     1,
+				"solutions": array(object(map[string]any{"result": "FB", "time": array(40, "min")})),
+			})), nil),
+		),
+	})
+
+	diagnostics := DiagnoseRanklist(ranklist, nil)
+
+	if len(diagnostics.Issues) == 0 || diagnostics.Issues[0]["section"] == nil {
+		t.Fatal("diagnostic issues should include normalized sections")
+	}
+	issueCodes := []any{}
+	for _, issue := range diagnostics.Issues {
+		issueCodes = append(issueCodes, issue["code"])
+	}
+	assertJSONEqual(t, issueCodes, expected["issueCodes"])
+	assertJSONEqual(t, diagnostics.Suggestions["firstBlood"], expected["firstBloodSuggestions"])
+	assertJSONEqual(t, diagnostics.Suggestions["problemStatistics"], expected["problemStatisticsSuggestions"])
+	sorterSuggestions := diagnostics.Suggestions["sorter"].([]any)
+	assertJSONEqual(t, sorterSuggestions[0].(map[string]any)["config"], expected["firstSorterSuggestionConfig"])
+
+	patch := CreateRanklistPatchFromDiagnostics(ranklist, diagnostics, nil)
+	patched := PatchRanklist(ranklist, patch, nil)
+
+	assertJSONEqual(t, patch, expected["generatedPatch"])
+	if !hasOperationTargetType(patch.Operations, "sorter") {
+		t.Fatal("expected sorter patch operation")
+	}
+	if hasOperationTargetType(patch.Operations, "sorterConfig") {
+		t.Fatal("diagnostic patches should not emit sorterConfig targets")
+	}
+	rows := patched["rows"].([]any)
+	patchedExpected := expected["patched"].(map[string]any)
+	assertJSONEqual(t, rows[0].(map[string]any)["statuses"].([]any)[0].(map[string]any)["result"], patchedExpected["firstRowStatusResult"])
+	assertJSONEqual(t, rows[0].(map[string]any)["statuses"].([]any)[0].(map[string]any)["solutions"].([]any)[2].(map[string]any)["result"], patchedExpected["firstRowAcceptedSolutionResult"])
+	assertJSONEqual(t, rows[1].(map[string]any)["statuses"].([]any)[0].(map[string]any)["result"], patchedExpected["secondRowStatusResult"])
+	assertJSONEqual(t, rows[1].(map[string]any)["statuses"].([]any)[0].(map[string]any)["solutions"].([]any)[0].(map[string]any)["result"], patchedExpected["secondRowAcceptedSolutionResult"])
+	assertJSONEqual(t, patched["problems"].([]any)[0].(map[string]any)["statistics"], patchedExpected["problemStatistics"])
+	assertJSONEqual(t, patched["sorter"].(map[string]any)["config"].(map[string]any)["noPenaltyResults"], patchedExpected["noPenaltyResults"])
+	if _, ok := ranklist["rows"].([]any)[0].(map[string]any)["user"].(map[string]any)["teamMembers"]; ok {
+		t.Fatal("patch should not mutate input ranklist")
+	}
+}
+
+func TestPatchRanklistSupportsTargetsConditionsAndDottedPaths(t *testing.T) {
+	ranklist := makeRanklist(map[string]any{
+		"rows": array(makeRow("u1", nil, nil, nil), makeRow("u2", nil, nil, nil)),
+	})
+	patch := RanklistPatch{
+		Type:    "srk-patch",
+		Version: 1,
+		Operations: []RanklistPatchOperation{
+			{Op: "set", Target: map[string]any{"type": "contest", "path": "banner"}, Value: "https://example.com/banner.png"},
+			{
+				Op:     "merge",
+				Target: map[string]any{"type": "problem", "problemIndex": 0, "problemAlias": "A", "path": "style"},
+				Value:  map[string]any{"backgroundColor": "#ff0000"},
+			},
+			{
+				Op:       "append",
+				Target:   map[string]any{"type": "row", "userId": "u1", "path": "user.teamMembers"},
+				Value:    map[string]any{"name": "Coach", "role": "coach"},
+				UniqueBy: "role",
+			},
+			{
+				Op:     "set",
+				Target: map[string]any{"type": "sorter", "path": "config.noPenaltyResults"},
+				Value:  []any{"FB", "AC", "?", nil},
+			},
+		},
+	}
+
+	patched := PatchRanklist(ranklist, patch, nil)
+
+	assertJSONEqual(t, patched["contest"].(map[string]any)["banner"], "https://example.com/banner.png")
+	assertJSONEqual(t, patched["problems"].([]any)[0].(map[string]any)["style"], object(map[string]any{"backgroundColor": "#ff0000"}))
+	assertJSONEqual(t, patched["rows"].([]any)[0].(map[string]any)["user"].(map[string]any)["teamMembers"], array(object(map[string]any{"name": "Coach", "role": "coach"})))
+	assertJSONEqual(t, patched["sorter"].(map[string]any)["config"].(map[string]any)["noPenaltyResults"], array("FB", "AC", "?", nil))
+	if _, ok := ranklist["contest"].(map[string]any)["banner"]; ok {
+		t.Fatal("patch should not mutate input contest")
+	}
+}
+
+func hasOperationTargetType(operations []RanklistPatchOperation, targetType string) bool {
+	for _, operation := range operations {
+		if operation.Target["type"] == targetType {
+			return true
+		}
+	}
+	return false
+}
+
 func TestRanklistRegenerationAndStaticRanksMatchContract(t *testing.T) {
 	fixtures := loadFixtures(t)
 	expected := fixture(fixtures, "ranklist").(map[string]any)

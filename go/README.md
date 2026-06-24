@@ -21,6 +21,8 @@ func main() {
 	_ = srkutils.FormatTimeDuration([]any{1.5, "h"}, "min", nil)
 	_ = srkutils.ResolveText(map[string]any{"fallback": "English", "zh-CN": "中文"}, []string{"zh-CN"})
 	_ = srkutils.SortRows(srkutils.RanklistRowsToMaps([]srkutils.RanklistRow{}), nil)
+	_ = srkutils.DiagnoseRanklist(map[string]any{}, nil)
+	_ = srkutils.PatchRanklist(map[string]any{}, srkutils.RanklistPatch{Type: "srk-patch", Version: 1, Operations: []srkutils.RanklistPatchOperation{}}, nil)
 }
 ```
 
@@ -53,6 +55,12 @@ The map-based helpers mirror srk JSON closely. When using exported Go structs su
 - `RegenerateRanklistBySolutions`: Rebuild rows, scores, sorting, and problem statistics from solution tetrads.
 - `RegenerateRowsByIncrementalSolutions`: Apply incremental solution tetrads to existing rows and re-sort them.
 - `ConvertToStaticRanklist`: Add precomputed per-series rank values and segment indexes to each row.
+
+### diagnostics and patch
+
+- `DiagnoseRanklist`: Inspect SRK completeness/correctness and return structured issues plus repair suggestions.
+- `PatchRanklist`: Apply a pure `srk-patch` object to a deep-copied ranklist.
+- `CreateRanklistPatchFromDiagnostics`: Convert diagnostic suggestions into an applicable `srk-patch`.
 
 ### typed models
 
