@@ -13,12 +13,32 @@ npm i -S @algoux/standard-ranklist @algoux/standard-ranklist-utils
 ## Usage Sample
 
 ```ts
-import { formatTimeDuration, resolveText, sortRows } from '@algoux/standard-ranklist-utils';
+import {
+  diagnoseRanklist,
+  formatTimeDuration,
+  patchRanklist,
+  resolveText,
+  sortRows,
+} from '@algoux/standard-ranklist-utils';
 
 formatTimeDuration([1.5, 'h'], 'min'); // 90
 resolveText({ fallback: 'English', 'zh-CN': '中文' }, ['zh-CN']); // 中文
 sortRows(ranklist.rows, ranklist.sorter?.config);
+diagnoseRanklist(ranklist); // structured diagnostics for srk completeness/correctness
+patchRanklist(ranklist, {
+  type: 'srk-patch',
+  version: 1,
+  operations: [
+    { op: 'set', target: { type: 'contest', path: ['banner'] }, value: 'https://example.com/banner.png' },
+    { op: 'set', target: { type: 'sorter', path: 'config.noPenaltyResults' }, value: ['FB', 'AC', '?', null] },
+  ],
+}); // returns a patched copy without mutating ranklist
 ```
+
+## CLI
+
+This package provides structured JavaScript and TypeScript APIs. Command-line usage is owned by the standalone
+`@algoux/standard-ranklist-cli` package, which exposes the `srk` command.
 
 ## Utilities
 
@@ -49,3 +69,12 @@ sortRows(ranklist.rows, ranklist.sorter?.config);
 - `regenerateRanklistBySolutions`: Rebuild rows, scores, sorting, and problem statistics from solution tetrads.
 - `regenerateRowsByIncrementalSolutions`: Apply incremental solution tetrads to existing rows and re-sort them.
 - `convertToStaticRanklist`: Add precomputed per-series rank values and segment indexes to each row.
+
+### diagnostics
+
+- `diagnoseRanklist`: Return a machine-friendly diagnostics object with precision summary, completeness checks, correctness checks, repair suggestions, and a flat `issues[]` index.
+
+### patch
+
+- `patchRanklist`: Apply an SRK patch object and return a new ranklist without mutating the input.
+- `createRanklistPatchFromDiagnostics`: Convert safe diagnostic suggestions into a reusable SRK patch object.
