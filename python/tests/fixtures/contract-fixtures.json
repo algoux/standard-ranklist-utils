@@ -1056,5 +1056,302 @@
         "segmentIndex": 0
       }
     ]
+  },
+  "diagnosticsPatch": {
+    "issueCodes": [
+      "COMPLETENESS_BANNER",
+      "COMPLETENESS_PROBLEM_COLORS",
+      "COMPLETENESS_ICPC_SERIES",
+      "COMPLETENESS_USER_AVATAR",
+      "COMPLETENESS_USER_PHOTO",
+      "COMPLETENESS_TEAM_MEMBERS",
+      "COMPLETENESS_COACH_ROLE",
+      "COMPLETENESS_I18N",
+      "FIRST_BLOOD_CONFLICT",
+      "PROBLEM_STATISTICS_MISMATCH",
+      "STATUS_SUMMARY_MISMATCH",
+      "ROW_ORDER_MISMATCH",
+      "SORTER_CONFIG_MISMATCH"
+    ],
+    "firstBloodSuggestions": [
+      {
+        "problemIndex": 0,
+        "problemAlias": "A",
+        "userId": "u1",
+        "rowIndex": 0,
+        "time": [
+          30,
+          "min"
+        ]
+      }
+    ],
+    "problemStatisticsSuggestions": [
+      {
+        "problemIndex": 0,
+        "problemAlias": "A",
+        "actual": {
+          "accepted": 2,
+          "submitted": 4
+        },
+        "expected": {
+          "accepted": 2,
+          "submitted": 3
+        },
+        "confidence": "high",
+        "reason": "declared statistics match a calculation where CE/NOUT/UKE count as penalty submissions",
+        "details": {
+          "withoutNoPenaltyResults": [
+            "CE",
+            "NOUT",
+            "UKE"
+          ]
+        }
+      }
+    ],
+    "firstSorterSuggestionConfig": {
+      "noPenaltyResults": [
+        "FB",
+        "AC",
+        "?",
+        "NOUT",
+        "UKE",
+        null
+      ]
+    },
+    "generatedPatch": {
+      "type": "srk-patch",
+      "version": 1,
+      "metadata": {
+        "source": "standard-ranklist-utils",
+        "description": "Patch generated from SRK diagnostics suggestions.",
+        "diagnostics": {
+          "firstBlood": [
+            {
+              "problemIndex": 0,
+              "problemAlias": "A",
+              "userId": "u1",
+              "rowIndex": 0,
+              "time": [
+                30,
+                "min"
+              ]
+            }
+          ],
+          "problemStatistics": [
+            {
+              "problemIndex": 0,
+              "problemAlias": "A",
+              "actual": {
+                "accepted": 2,
+                "submitted": 4
+              },
+              "expected": {
+                "accepted": 2,
+                "submitted": 3
+              },
+              "confidence": "high",
+              "reason": "declared statistics match a calculation where CE/NOUT/UKE count as penalty submissions",
+              "details": {
+                "withoutNoPenaltyResults": [
+                  "CE",
+                  "NOUT",
+                  "UKE"
+                ]
+              }
+            }
+          ],
+          "sorter": {
+            "config": {
+              "noPenaltyResults": [
+                "FB",
+                "AC",
+                "?",
+                "NOUT",
+                "UKE",
+                null
+              ]
+            },
+            "confidence": "medium",
+            "resolvedIssues": [
+              "statusSummaries",
+              "problemStatistics",
+              "statusTries"
+            ]
+          }
+        }
+      },
+      "operations": [
+        {
+          "op": "set",
+          "target": {
+            "type": "status",
+            "rowIndex": 1,
+            "userId": "u2",
+            "problemIndex": 0,
+            "problemAlias": "A",
+            "path": [
+              "result"
+            ]
+          },
+          "value": "AC",
+          "when": [
+            {
+              "target": {
+                "type": "status",
+                "rowIndex": 1,
+                "userId": "u2",
+                "problemIndex": 0,
+                "problemAlias": "A",
+                "path": [
+                  "result"
+                ]
+              },
+              "equals": "FB"
+            }
+          ]
+        },
+        {
+          "op": "set",
+          "target": {
+            "type": "solution",
+            "rowIndex": 1,
+            "userId": "u2",
+            "problemIndex": 0,
+            "problemAlias": "A",
+            "solutionIndex": 0,
+            "path": [
+              "result"
+            ]
+          },
+          "value": "AC",
+          "when": [
+            {
+              "target": {
+                "type": "solution",
+                "rowIndex": 1,
+                "userId": "u2",
+                "problemIndex": 0,
+                "problemAlias": "A",
+                "solutionIndex": 0,
+                "path": [
+                  "result"
+                ]
+              },
+              "equals": "FB"
+            }
+          ]
+        },
+        {
+          "op": "set",
+          "target": {
+            "type": "status",
+            "rowIndex": 0,
+            "userId": "u1",
+            "problemIndex": 0,
+            "problemAlias": "A",
+            "path": [
+              "result"
+            ]
+          },
+          "value": "FB"
+        },
+        {
+          "op": "set",
+          "target": {
+            "type": "solution",
+            "rowIndex": 0,
+            "userId": "u1",
+            "problemIndex": 0,
+            "problemAlias": "A",
+            "solutionIndex": 2,
+            "path": [
+              "result"
+            ]
+          },
+          "value": "FB",
+          "when": [
+            {
+              "target": {
+                "type": "solution",
+                "rowIndex": 0,
+                "userId": "u1",
+                "problemIndex": 0,
+                "problemAlias": "A",
+                "solutionIndex": 2,
+                "path": [
+                  "result"
+                ]
+              },
+              "in": [
+                "AC",
+                "FB"
+              ]
+            }
+          ]
+        },
+        {
+          "op": "set",
+          "target": {
+            "type": "problem",
+            "problemIndex": 0,
+            "problemAlias": "A",
+            "path": "statistics"
+          },
+          "value": {
+            "accepted": 2,
+            "submitted": 3
+          },
+          "metadata": {
+            "source": "standard-ranklist-utils",
+            "confidence": "high",
+            "reason": "declared statistics match a calculation where CE/NOUT/UKE count as penalty submissions"
+          }
+        },
+        {
+          "op": "merge",
+          "target": {
+            "type": "sorter",
+            "path": "config"
+          },
+          "value": {
+            "noPenaltyResults": [
+              "FB",
+              "AC",
+              "?",
+              "NOUT",
+              "UKE",
+              null
+            ]
+          },
+          "metadata": {
+            "source": "standard-ranklist-utils",
+            "confidence": "medium",
+            "resolvedIssues": [
+              "statusSummaries",
+              "problemStatistics",
+              "statusTries"
+            ]
+          }
+        }
+      ]
+    },
+    "patched": {
+      "firstRowStatusResult": "FB",
+      "firstRowAcceptedSolutionResult": "FB",
+      "secondRowStatusResult": "AC",
+      "secondRowAcceptedSolutionResult": "AC",
+      "problemStatistics": {
+        "accepted": 2,
+        "submitted": 3
+      },
+      "noPenaltyResults": [
+        "FB",
+        "AC",
+        "?",
+        "NOUT",
+        "UKE",
+        null
+      ]
+    }
   }
 }

@@ -8,8 +8,11 @@ from standard_ranklist_utils import (
     EnumTheme,
     alphabet_to_number,
     convert_to_static_ranklist,
+    create_ranklist_patch_from_diagnostics,
+    diagnose_ranklist,
     format_time_duration,
     number_to_alphabet,
+    patch_ranklist,
     pre_zero_fill,
     regenerate_ranklist_by_solutions,
     regenerate_rows_by_incremental_solutions,
@@ -166,6 +169,106 @@ def test_ranklist_helpers_match_js_contract():
         ]
     )
     assert [row["user"]["id"] for row in sorted_rows] == expected["sortedRows"]
+
+
+def test_diagnostics_and_patch_modules_match_js_contract():
+    expected = FIXTURES["diagnosticsPatch"]
+    ranklist = make_ranklist(
+        problems=[{"alias": "A", "statistics": {"accepted": 2, "submitted": 4}}],
+        rows=[
+            make_row(
+                "u1",
+                {"value": 1, "time": [70, "min"]},
+                [
+                    {
+                        "result": "AC",
+                        "time": [30, "min"],
+                        "tries": 3,
+                        "solutions": [
+                            {"result": "WA", "time": [10, "min"]},
+                            {"result": "CE", "time": [20, "min"]},
+                            {"result": "AC", "time": [30, "min"]},
+                        ],
+                    }
+                ],
+            ),
+            make_row(
+                "u2",
+                {"value": 1, "time": [40, "min"]},
+                [
+                    {
+                        "result": "FB",
+                        "time": [40, "min"],
+                        "tries": 1,
+                        "solutions": [{"result": "FB", "time": [40, "min"]}],
+                    }
+                ],
+            ),
+        ],
+    )
+
+    diagnostics = diagnose_ranklist(ranklist)
+
+    assert diagnostics["issues"][0]["section"]
+    assert [issue["code"] for issue in diagnostics["issues"]] == expected["issueCodes"]
+    assert diagnostics["suggestions"]["firstBlood"] == expected["firstBloodSuggestions"]
+    assert diagnostics["suggestions"]["problemStatistics"] == expected["problemStatisticsSuggestions"]
+    assert diagnostics["suggestions"]["sorter"][0]["config"] == expected["firstSorterSuggestionConfig"]
+
+    patch = create_ranklist_patch_from_diagnostics(ranklist, diagnostics)
+    patched = patch_ranklist(ranklist, patch)
+
+    assert patch == expected["generatedPatch"]
+    assert any(operation["target"]["type"] == "sorter" for operation in patch["operations"])
+    assert not any(operation["target"]["type"] == "sorterConfig" for operation in patch["operations"])
+    assert patched["rows"][0]["statuses"][0]["result"] == expected["patched"]["firstRowStatusResult"]
+    assert (
+        patched["rows"][0]["statuses"][0]["solutions"][2]["result"]
+        == expected["patched"]["firstRowAcceptedSolutionResult"]
+    )
+    assert patched["rows"][1]["statuses"][0]["result"] == expected["patched"]["secondRowStatusResult"]
+    assert (
+        patched["rows"][1]["statuses"][0]["solutions"][0]["result"]
+        == expected["patched"]["secondRowAcceptedSolutionResult"]
+    )
+    assert patched["problems"][0]["statistics"] == expected["patched"]["problemStatistics"]
+    assert patched["sorter"]["config"]["noPenaltyResults"] == expected["patched"]["noPenaltyResults"]
+    assert "teamMembers" not in ranklist["rows"][0]["user"]
+
+
+def test_patch_ranklist_supports_srk_targets_conditions_and_dotted_paths():
+    ranklist = make_ranklist(rows=[make_row("u1"), make_row("u2")])
+    patch = {
+        "type": "srk-patch",
+        "version": 1,
+        "operations": [
+            {"op": "set", "target": {"type": "contest", "path": "banner"}, "value": "https://example.com/banner.png"},
+            {
+                "op": "merge",
+                "target": {"type": "problem", "problemIndex": 0, "problemAlias": "A", "path": "style"},
+                "value": {"backgroundColor": "#ff0000"},
+            },
+            {
+                "op": "append",
+                "target": {"type": "row", "userId": "u1", "path": "user.teamMembers"},
+                "value": {"name": "Coach", "role": "coach"},
+                "uniqueBy": "role",
+            },
+            {
+                "op": "set",
+                "target": {"type": "sorter", "path": "config.noPenaltyResults"},
+                "value": ["FB", "AC", "?", None],
+            },
+        ],
+    }
+
+    patched = patch_ranklist(ranklist, patch)
+
+    assert patched["contest"]["banner"] == "https://example.com/banner.png"
+    assert patched["problems"][0]["style"] == {"backgroundColor": "#ff0000"}
+    assert patched["rows"][0]["user"]["teamMembers"] == [{"name": "Coach", "role": "coach"}]
+    assert patched["sorter"]["config"]["noPenaltyResults"] == ["FB", "AC", "?", None]
+    assert "banner" not in ranklist["contest"]
 
 
 def test_ranklist_regeneration_matches_js_contract():

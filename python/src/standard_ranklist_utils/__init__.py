@@ -1,4 +1,5 @@
 from .constants import MIN_REGEN_SUPPORTED_VERSION, SRK_SUPPORTED_VERSIONS
+from .diagnostics import diagnose_ranklist
 from .enums import EnumTheme
 from .formatters import (
     alphabet_to_number,
@@ -7,6 +8,7 @@ from .formatters import (
     pre_zero_fill,
     sec_to_time_str,
 )
+from .patch import create_ranklist_patch_from_diagnostics, patch_ranklist
 from .ranklist import (
     convert_to_static_ranklist,
     regenerate_ranklist_by_solutions,
@@ -59,6 +61,9 @@ __all__ = [
     "sec_to_time_str",
     "number_to_alphabet",
     "alphabet_to_number",
+    "diagnose_ranklist",
+    "patch_ranklist",
+    "create_ranklist_patch_from_diagnostics",
     "resolve_text",
     "resolve_contributor",
     "resolve_color",

@@ -4,7 +4,7 @@ Utilities for [Standard Ranklist (srk)](https://github.com/algoux/standard-rankl
 Python, and Go.
 
 The JavaScript package is the behavior baseline. Python and Go are tested against shared JSON fixtures generated from
-that baseline so ranklist regeneration and rendering helpers stay aligned across languages.
+that baseline so ranklist regeneration, diagnostics, patching, and rendering helpers stay aligned across languages.
 
 ## Packages
 
@@ -23,6 +23,17 @@ All packages support srk `>=0.3.0 <0.4.0`. Regeneration helpers require srk `0.3
 - `go/`: Go module with table-driven contract tests.
 - `testdata/contract-fixtures.json`: canonical behavior fixture generated from JS.
 - `python/tests/fixtures/` and `go/testdata/fixtures/`: package-local copies of the contract fixture.
+
+## Diagnostics And Patching
+
+All three language packages expose library-level diagnostics and patch helpers. CLI ownership lives outside this repo.
+
+- JS: `diagnoseRanklist`, `patchRanklist`, `createRanklistPatchFromDiagnostics`.
+- Python: `diagnose_ranklist`, `patch_ranklist`, `create_ranklist_patch_from_diagnostics`.
+- Go: `DiagnoseRanklist`, `PatchRanklist`, `CreateRanklistPatchFromDiagnostics`.
+
+The patch DSL is the shared `srk-patch` object format with SRK-aware targets such as `ranklist`, `contest`, `problem`,
+`row`, `status`, `solution`, and `sorter`. The public sorter target is `{"type": "sorter", "path": "config..."}`.
 
 ## Development
 

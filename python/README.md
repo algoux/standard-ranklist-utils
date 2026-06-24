@@ -13,11 +13,13 @@ pip install algoux-standard-ranklist-utils
 ## Usage Sample
 
 ```python
-from standard_ranklist_utils import format_time_duration, resolve_text, sort_rows
+from standard_ranklist_utils import diagnose_ranklist, format_time_duration, patch_ranklist, resolve_text, sort_rows
 
 format_time_duration([1.5, "h"], "min")  # 90
 resolve_text({"fallback": "English", "zh-CN": "中文"}, ["zh-CN"])  # 中文
 sort_rows(ranklist["rows"], ranklist.get("sorter", {}).get("config"))
+diagnostics = diagnose_ranklist(ranklist)
+patched = patch_ranklist(ranklist, {"type": "srk-patch", "version": 1, "operations": []})
 ```
 
 ## Utilities
@@ -45,3 +47,9 @@ sort_rows(ranklist["rows"], ranklist.get("sorter", {}).get("config"))
 - `regenerate_ranklist_by_solutions`: Rebuild rows, scores, sorting, and problem statistics from solution tetrads.
 - `regenerate_rows_by_incremental_solutions`: Apply incremental solution tetrads to existing rows and re-sort them.
 - `convert_to_static_ranklist`: Add precomputed per-series rank values and segment indexes to each row.
+
+### diagnostics and patch
+
+- `diagnose_ranklist`: Inspect SRK completeness/correctness and return structured issues plus repair suggestions.
+- `patch_ranklist`: Apply a pure `srk-patch` object to a deep-copied ranklist.
+- `create_ranklist_patch_from_diagnostics`: Convert diagnostic suggestions into an applicable `srk-patch`.

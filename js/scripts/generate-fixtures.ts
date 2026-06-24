@@ -7,8 +7,11 @@ import {
   MIN_REGEN_SUPPORTED_VERSION,
   alphabetToNumber,
   convertToStaticRanklist,
+  createRanklistPatchFromDiagnostics,
+  diagnoseRanklist,
   formatTimeDuration,
   numberToAlphabet,
+  patchRanklist,
   preZeroFill,
   regenerateRanklistBySolutions,
   regenerateRowsByIncrementalSolutions,
@@ -236,6 +239,30 @@ const strictIdRanklist = makeRanklist({
   ],
 });
 
+const diagnosticsPatchRanklist = makeRanklist({
+  problems: [{ alias: 'A', statistics: { accepted: 2, submitted: 4 } }],
+  rows: [
+    makeRow('u1', { value: 1, time: [70, 'min'] }, [
+      {
+        result: 'AC',
+        time: [30, 'min'],
+        tries: 3,
+        solutions: [
+          { result: 'WA', time: [10, 'min'] },
+          { result: 'CE', time: [20, 'min'] },
+          { result: 'AC', time: [30, 'min'] },
+        ],
+      },
+    ]),
+    makeRow('u2', { value: 1, time: [40, 'min'] }, [
+      { result: 'FB', time: [40, 'min'], tries: 1, solutions: [{ result: 'FB', time: [40, 'min'] }] },
+    ]),
+  ],
+});
+const diagnosticsPatchReport = diagnoseRanklist(diagnosticsPatchRanklist);
+const diagnosticsPatch = createRanklistPatchFromDiagnostics(diagnosticsPatchRanklist, diagnosticsPatchReport);
+const diagnosticsPatchedRanklist = patchRanklist(diagnosticsPatchRanklist, diagnosticsPatch);
+
 const originalWarn = console.warn;
 console.warn = () => {};
 
@@ -398,6 +425,24 @@ const fixtures = {
     invalidFilterRankValue: convertToStaticRanklist(invalidFilterRanklist).rows[0].rankValues[0],
     ratioRankValues: convertToStaticRanklist(ratioRanklist).rows.map((row) => row.rankValues[0]),
     strictIdRankValues: convertToStaticRanklist(strictIdRanklist).rows.map((row) => row.rankValues[0]),
+  },
+  diagnosticsPatch: {
+    issueCodes: diagnosticsPatchReport.issues.map((issue) => issue.code),
+    firstBloodSuggestions: diagnosticsPatchReport.suggestions.firstBlood,
+    problemStatisticsSuggestions: diagnosticsPatchReport.suggestions.problemStatistics,
+    firstSorterSuggestionConfig: diagnosticsPatchReport.suggestions.sorter[0]?.config,
+    generatedPatch: diagnosticsPatch,
+    patched: {
+      firstRowStatusResult: diagnosticsPatchedRanklist.rows[0].statuses?.[0]?.result,
+      firstRowAcceptedSolutionResult: diagnosticsPatchedRanklist.rows[0].statuses?.[0]?.solutions?.[2]?.result,
+      secondRowStatusResult: diagnosticsPatchedRanklist.rows[1].statuses?.[0]?.result,
+      secondRowAcceptedSolutionResult: diagnosticsPatchedRanklist.rows[1].statuses?.[0]?.solutions?.[0]?.result,
+      problemStatistics: diagnosticsPatchedRanklist.problems[0].statistics,
+      noPenaltyResults:
+        diagnosticsPatchedRanklist.sorter?.algorithm === 'ICPC'
+          ? diagnosticsPatchedRanklist.sorter.config.noPenaltyResults
+          : undefined,
+    },
   },
 };
 
