@@ -1,6 +1,6 @@
 {
   "name": "@algoux/standard-ranklist-utils",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "bLue",
   "keywords": [
     "standard ranklist",
@@ -27,7 +27,7 @@
     "dev": "tsx src/index.ts",
     "generate:fixtures": "tsx scripts/generate-fixtures.ts",
     "test": "tsc --noEmit -p tsconfig.test.json && node --import tsx --test tests/*.test.ts",
-    "build": "pkgroll",
+    "build": "rimraf dist && pkgroll",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
