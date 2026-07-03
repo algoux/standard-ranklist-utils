@@ -423,7 +423,7 @@ function buildCompletenessItems(
   }
   const icpcLevel =
     icpcSeriesDetails.icpcSeriesCount === 0
-      ? 'missing'
+      ? 'notApplicable'
       : icpcSeriesDetails.usableICPCSeriesCount === 0
       ? 'partial'
       : icpcSeriesDetails.incompleteSeries.length
@@ -461,7 +461,7 @@ function buildCompletenessItems(
       'icpcSeries',
       'ICPC series configuration',
       icpcSeriesDetails.usableICPCSeriesCount,
-      icpcSeriesDetails.icpcSeriesCount || 1,
+      icpcSeriesDetails.icpcSeriesCount,
       icpcSeriesDetails,
       icpcLevel,
     ),

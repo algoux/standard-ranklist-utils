@@ -252,7 +252,7 @@ def _build_completeness_items(ranklist: dict[str, Any], add_issue: Callable[[dic
             }
         )
     if icpc_series_details["icpcSeriesCount"] == 0:
-        icpc_level = "missing"
+        icpc_level = "notApplicable"
     elif icpc_series_details["usableICPCSeriesCount"] == 0:
         icpc_level = "partial"
     elif icpc_series_details["incompleteSeries"]:
@@ -296,7 +296,7 @@ def _build_completeness_items(ranklist: dict[str, Any], add_issue: Callable[[dic
             "icpcSeries",
             "ICPC series configuration",
             icpc_series_details["usableICPCSeriesCount"],
-            icpc_series_details["icpcSeriesCount"] or 1,
+            icpc_series_details["icpcSeriesCount"],
             icpc_series_details,
             icpc_level,
         ),

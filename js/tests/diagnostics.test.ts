@@ -159,6 +159,19 @@ describe('diagnoseRanklist', () => {
     assert.ok(diagnostics.completeness.items.rowUserConsistency.details.missingByRow.length > 0);
   });
 
+  test('marks ICPC series diagnostics not applicable when no ICPC preset series exists', () => {
+    const diagnostics = diagnoseRanklist(
+      makeRanklist({
+        series: [{ title: 'Rank', rule: { preset: 'Normal' } }],
+      }),
+    );
+
+    assert.equal(diagnostics.completeness.items.icpcSeries.level, 'notApplicable');
+    assert.equal(diagnostics.completeness.items.icpcSeries.presentCount, 0);
+    assert.equal(diagnostics.completeness.items.icpcSeries.totalCount, 0);
+    assert.equal(diagnostics.issues.some((issue) => issue.code === 'COMPLETENESS_ICPC_SERIES'), false);
+  });
+
   test('detects first-blood conflicts and suggests unique repairs', () => {
     const diagnostics = diagnoseRanklist(
       makeRanklist({

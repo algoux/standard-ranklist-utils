@@ -234,7 +234,7 @@ func buildCompletenessItems(ranklist map[string]any, addIssue func(map[string]an
 	}
 	icpcLevel := "complete"
 	if int(numberValue(icpcSeriesDetails["icpcSeriesCount"])) == 0 {
-		icpcLevel = "missing"
+		icpcLevel = "notApplicable"
 	} else if int(numberValue(icpcSeriesDetails["usableICPCSeriesCount"])) == 0 {
 		icpcLevel = "partial"
 	} else if len(asSlice(icpcSeriesDetails["incompleteSeries"])) > 0 {
@@ -293,7 +293,7 @@ func buildCompletenessItems(ranklist map[string]any, addIssue func(map[string]an
 		"banner":             makeItem("banner", "Contest banner", boolToInt(asMap(ranklist["contest"])["banner"] != nil), 1, map[string]any{"hasBanner": asMap(ranklist["contest"])["banner"] != nil}, ""),
 		"firstBlood":         makeItem("firstBlood", "Problem first-blood declarations", presentFirstBloodProblemCount, len(expectedFirstBloodProblemIndexes), map[string]any{"problemIndexes": sortedIntKeys(fbProblemIndexes), "expectedProblemIndexes": expectedFirstBloodProblemIndexes, "noAcceptedProblemIndexes": noAcceptedProblemIndexes}, ""),
 		"problemColors":      makeItem("problemColors", "Problem background colors", problemColorCount, len(problems), nilMap(), ""),
-		"icpcSeries":         makeItem("icpcSeries", "ICPC series configuration", int(numberValue(icpcSeriesDetails["usableICPCSeriesCount"])), maxInt(1, int(numberValue(icpcSeriesDetails["icpcSeriesCount"]))), icpcSeriesDetails, icpcLevel),
+		"icpcSeries":         makeItem("icpcSeries", "ICPC series configuration", int(numberValue(icpcSeriesDetails["usableICPCSeriesCount"])), int(numberValue(icpcSeriesDetails["icpcSeriesCount"])), icpcSeriesDetails, icpcLevel),
 		"userAvatar":         makeItem("userAvatar", "User avatars", userAvatarCount, len(rows), nilMap(), ""),
 		"userPhoto":          makeItem("userPhoto", "User photos", userPhotoCount, len(rows), nilMap(), ""),
 		"teamMembers":        makeItem("teamMembers", "Team member information", teamMembersCount, len(rows), nilMap(), ""),
