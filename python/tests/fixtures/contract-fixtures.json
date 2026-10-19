@@ -1,4 +1,4298 @@
 {
+  "ccpc26": {
+    "layouts": [
+      {
+        "name": "count-boundary-ac-and-fb",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 2
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "count-not-reached",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 3
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "ratio-default-floor",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.6
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "ratio-ceil",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.6,
+                      "rounding": "ceil"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "ratio-round-down",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.6,
+                      "rounding": "round"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "ratio-round-half-up",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.625,
+                      "rounding": "round"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "or-ratio-reveals",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 3,
+                      "ratio": 0.5
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "or-count-reveals",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 1,
+                      "ratio": 1
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0,
+            1
+          ],
+          "hiddenProblemIndexes": []
+        }
+      },
+      {
+        "name": "empty-threshold-no-defaults",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {}
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "zero-count",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 0
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0,
+            1
+          ],
+          "hiddenProblemIndexes": []
+        }
+      },
+      {
+        "name": "empty-denominator-zero-ratio-threshold",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.2
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0,
+            1
+          ],
+          "hiddenProblemIndexes": []
+        }
+      },
+      {
+        "name": "small-denominator-zero-ratio-threshold",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "idle",
+                "name": "idle"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": []
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.2
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0,
+            1
+          ],
+          "hiddenProblemIndexes": []
+        }
+      },
+      {
+        "name": "no-problems",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [],
+          "series": [],
+          "rows": [],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 0
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": []
+        }
+      },
+      {
+        "name": "numeric-thresholds-only",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": true,
+                      "ratio": "0.2"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "null-thresholds-ignored",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": null,
+                      "ratio": null
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "invalid-threshold-array",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": []
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": null
+      },
+      {
+        "name": "invalid-threshold-null",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": null
+      },
+      {
+        "name": "round-just-below-half",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "idle",
+                "name": "idle"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": []
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.49999999999999994,
+                      "rounding": "round"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0,
+            1
+          ],
+          "hiddenProblemIndexes": []
+        }
+      },
+      {
+        "name": "round-negative-half",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "idle",
+                "name": "idle"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": []
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": -0.5,
+                      "rounding": "round"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0,
+            1
+          ],
+          "hiddenProblemIndexes": []
+        }
+      },
+      {
+        "name": "finite-ratio-product-overflow",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 1e+308,
+                      "rounding": "round"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "denominator-all",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "AC",
+                  "tries": 20
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "ce",
+                "name": "ce"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null,
+                  "solutions": [
+                    {
+                      "result": "CE",
+                      "time": [
+                        1,
+                        "s"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "rejected",
+                "name": "rejected"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": "RJ"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "tries-only",
+                "name": "tries-only"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null,
+                  "tries": 1
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "idle",
+                "name": "idle"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.5,
+                      "denominator": "all"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "denominator-submitted",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "AC",
+                  "tries": 20
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "ce",
+                "name": "ce"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null,
+                  "solutions": [
+                    {
+                      "result": "CE",
+                      "time": [
+                        1,
+                        "s"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "rejected",
+                "name": "rejected"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": "RJ"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "tries-only",
+                "name": "tries-only"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null,
+                  "tries": 1
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "idle",
+                "name": "idle"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.5,
+                      "denominator": "submitted"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "denominator-scored",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "AC",
+                  "tries": 20
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "ce",
+                "name": "ce"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null,
+                  "solutions": [
+                    {
+                      "result": "CE",
+                      "time": [
+                        1,
+                        "s"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "rejected",
+                "name": "rejected"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": "RJ"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "tries-only",
+                "name": "tries-only"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null,
+                  "tries": 1
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "idle",
+                "name": "idle"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 0.5,
+                      "denominator": "scored"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "scored-does-not-filter-numerator",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "positive",
+                "name": "positive"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "zero-score-ac",
+                "name": "zero-score-ac"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 2,
+                      "denominator": "scored"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "unofficial-included-by-default",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "default-official",
+                "name": "default-official"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "guest",
+                "name": "guest",
+                "official": false
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 2
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "official-only-numerator",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "default-official",
+                "name": "default-official"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "guest",
+                "name": "guest",
+                "official": false
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 2,
+                      "includeOfficialOnly": true
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "name": "official-only-denominator",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "default-official",
+                "name": "default-official"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "guest-idle",
+                "name": "guest-idle",
+                "official": false
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": []
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "ratio": 1,
+                      "includeOfficialOnly": true
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "ignores-cached-statistics",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2",
+              "statistics": {
+                "accepted": 999,
+                "submitted": 1000
+              }
+            },
+            {
+              "alias": "P1",
+              "statistics": {
+                "accepted": 999,
+                "submitted": 1000
+              }
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 2
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": [
+            1
+          ]
+        }
+      },
+      {
+        "name": "no-sorter",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ]
+        },
+        "expected": null
+      },
+      {
+        "name": "score-sorter",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "score",
+            "config": {}
+          }
+        },
+        "expected": null
+      },
+      {
+        "name": "no-extension",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {}
+          }
+        },
+        "expected": null
+      },
+      {
+        "name": "legacy-flat-config-is-absent",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P2"
+            },
+            {
+              "alias": "P1"
+            }
+          ],
+          "series": [],
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 2
+              },
+              "statuses": [
+                {
+                  "result": "AC"
+                },
+                {
+                  "result": "FB"
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1
+              },
+              "statuses": [
+                {
+                  "result": "FB"
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "c",
+                "name": "c"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "d",
+                "name": "d"
+              },
+              "score": {
+                "value": 0
+              },
+              "statuses": [
+                {
+                  "result": null
+                },
+                {
+                  "result": null
+                }
+              ]
+            }
+          ],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "count": 1,
+                    "ratio": 0.2
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expected": null
+      },
+      {
+        "name": "replay-before",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P1",
+              "statistics": {
+                "accepted": 1,
+                "submitted": 2
+              }
+            }
+          ],
+          "series": [],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 2
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 1,
+                "time": [
+                  10000,
+                  "ms"
+                ]
+              },
+              "statuses": [
+                {
+                  "result": "FB",
+                  "solutions": [
+                    {
+                      "result": "FB",
+                      "time": [
+                        10,
+                        "s"
+                      ]
+                    }
+                  ],
+                  "time": [
+                    10,
+                    "s"
+                  ],
+                  "tries": 1
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 0,
+                "time": [
+                  0,
+                  "ms"
+                ]
+              },
+              "statuses": [
+                {
+                  "result": "RJ",
+                  "solutions": [
+                    {
+                      "result": "WA",
+                      "time": [
+                        5,
+                        "s"
+                      ]
+                    }
+                  ],
+                  "tries": 1
+                }
+              ]
+            }
+          ]
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0
+          ]
+        }
+      },
+      {
+        "name": "replay-at",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P1",
+              "statistics": {
+                "accepted": 2,
+                "submitted": 3
+              }
+            }
+          ],
+          "series": [],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 2
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 1,
+                "time": [
+                  10000,
+                  "ms"
+                ]
+              },
+              "statuses": [
+                {
+                  "result": "FB",
+                  "solutions": [
+                    {
+                      "result": "FB",
+                      "time": [
+                        10,
+                        "s"
+                      ]
+                    }
+                  ],
+                  "time": [
+                    10,
+                    "s"
+                  ],
+                  "tries": 1
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 1,
+                "time": [
+                  1220000,
+                  "ms"
+                ]
+              },
+              "statuses": [
+                {
+                  "result": "AC",
+                  "solutions": [
+                    {
+                      "result": "WA",
+                      "time": [
+                        5,
+                        "s"
+                      ]
+                    },
+                    {
+                      "result": "AC",
+                      "time": [
+                        20,
+                        "s"
+                      ]
+                    }
+                  ],
+                  "tries": 2,
+                  "time": [
+                    20,
+                    "s"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "expected": {
+          "revealedProblemIndexes": [
+            0
+          ],
+          "hiddenProblemIndexes": []
+        }
+      },
+      {
+        "name": "replay-rewind",
+        "ranklist": {
+          "type": "general",
+          "version": "0.3.14",
+          "contest": {
+            "title": "CCPC26 contract",
+            "startAt": "2020-01-01T00:00:00Z",
+            "duration": [
+              1,
+              "h"
+            ]
+          },
+          "problems": [
+            {
+              "alias": "P1",
+              "statistics": {
+                "accepted": 1,
+                "submitted": 2
+              }
+            }
+          ],
+          "series": [],
+          "sorter": {
+            "algorithm": "ICPC",
+            "config": {
+              "extendedAlgorithms": [
+                {
+                  "algorithm": "CCPC26",
+                  "config": {
+                    "problemRevealAcceptedThreshold": {
+                      "count": 2
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "rows": [
+            {
+              "user": {
+                "id": "a",
+                "name": "a"
+              },
+              "score": {
+                "value": 1,
+                "time": [
+                  10000,
+                  "ms"
+                ]
+              },
+              "statuses": [
+                {
+                  "result": "FB",
+                  "solutions": [
+                    {
+                      "result": "FB",
+                      "time": [
+                        10,
+                        "s"
+                      ]
+                    }
+                  ],
+                  "time": [
+                    10,
+                    "s"
+                  ],
+                  "tries": 1
+                }
+              ]
+            },
+            {
+              "user": {
+                "id": "b",
+                "name": "b"
+              },
+              "score": {
+                "value": 0,
+                "time": [
+                  0,
+                  "ms"
+                ]
+              },
+              "statuses": [
+                {
+                  "result": "RJ",
+                  "solutions": [
+                    {
+                      "result": "WA",
+                      "time": [
+                        5,
+                        "s"
+                      ]
+                    }
+                  ],
+                  "tries": 1
+                }
+              ]
+            }
+          ]
+        },
+        "expected": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0
+          ]
+        }
+      }
+    ],
+    "orders": [
+      {
+        "name": "shared-prefix-first-row",
+        "statuses": [
+          {
+            "result": null
+          },
+          {
+            "result": "AC",
+            "time": [
+              20,
+              "s"
+            ]
+          },
+          {
+            "result": "FB",
+            "time": [
+              10,
+              "s"
+            ]
+          },
+          {
+            "result": "RJ",
+            "solutions": [
+              {
+                "result": "WA",
+                "time": [
+                  40,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": null
+          },
+          {
+            "result": null
+          },
+          {
+            "result": null,
+            "solutions": [
+              {
+                "result": "CE",
+                "time": [
+                  30,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": null
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [
+            0,
+            4,
+            5
+          ],
+          "hiddenProblemIndexes": [
+            1,
+            2,
+            3,
+            6,
+            7
+          ]
+        },
+        "expected": [
+          0,
+          4,
+          5,
+          2,
+          1,
+          6,
+          3,
+          7
+        ]
+      },
+      {
+        "name": "shared-prefix-second-row",
+        "statuses": [
+          {
+            "result": null
+          },
+          {
+            "result": "AC",
+            "time": [
+              5,
+              "s"
+            ]
+          },
+          {
+            "result": "FB",
+            "time": [
+              10,
+              "s"
+            ]
+          },
+          {
+            "result": "RJ",
+            "solutions": [
+              {
+                "result": "WA",
+                "time": [
+                  1,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": null
+          },
+          {
+            "result": null
+          },
+          {
+            "result": null,
+            "solutions": [
+              {
+                "result": "CE",
+                "time": [
+                  30,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": null
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [
+            0,
+            4,
+            5
+          ],
+          "hiddenProblemIndexes": [
+            1,
+            2,
+            3,
+            6,
+            7
+          ]
+        },
+        "expected": [
+          0,
+          4,
+          5,
+          1,
+          2,
+          3,
+          6,
+          7
+        ]
+      },
+      {
+        "name": "accepted-summary-history-and-post-ac",
+        "statuses": [
+          {
+            "result": "AC",
+            "time": [
+              40,
+              "s"
+            ],
+            "solutions": [
+              {
+                "result": "AC",
+                "time": [
+                  1,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": "FB",
+            "solutions": [
+              {
+                "result": "WA",
+                "time": [
+                  1,
+                  "s"
+                ]
+              },
+              {
+                "result": "AC",
+                "time": [
+                  20,
+                  "s"
+                ]
+              },
+              {
+                "result": "FB",
+                "time": [
+                  30,
+                  "s"
+                ]
+              },
+              {
+                "result": "WA",
+                "time": [
+                  100,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": "AC",
+            "time": [
+              0,
+              "s"
+            ]
+          },
+          {
+            "result": "AC"
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "expected": [
+          2,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "last-attempt-includes-nonpenalty-and-summary-only-without-history",
+        "statuses": [
+          {
+            "result": "RJ",
+            "time": [
+              0,
+              "s"
+            ],
+            "solutions": [
+              {
+                "result": "WA",
+                "time": [
+                  2,
+                  "s"
+                ]
+              },
+              {
+                "result": "CE",
+                "time": [
+                  60,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": "RJ",
+            "time": [
+              40,
+              "s"
+            ]
+          },
+          {
+            "result": null,
+            "solutions": [
+              {
+                "result": "NOUT",
+                "time": [
+                  20,
+                  "s"
+                ]
+              },
+              {
+                "result": "UKE",
+                "time": [
+                  30,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": "?",
+            "time": [
+              10,
+              "s"
+            ],
+            "solutions": []
+          },
+          {
+            "result": "RJ",
+            "time": [
+              0,
+              "s"
+            ],
+            "solutions": [
+              {
+                "result": "WA",
+                "time": [
+                  -1,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": "RJ"
+          },
+          {
+            "result": null
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "expected": [
+          3,
+          2,
+          1,
+          0,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "name": "mixed-units-ties-zero-unknown",
+        "statuses": [
+          {
+            "result": "AC",
+            "time": [
+              1,
+              "min"
+            ]
+          },
+          {
+            "result": "FB",
+            "time": [
+              60,
+              "s"
+            ]
+          },
+          {
+            "result": "AC",
+            "time": [
+              0,
+              "ms"
+            ]
+          },
+          {
+            "result": "AC"
+          },
+          {
+            "result": "RJ"
+          },
+          {
+            "result": "RJ",
+            "time": [
+              0,
+              "s"
+            ]
+          },
+          {
+            "result": null
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          2,
+          0,
+          1,
+          3,
+          5,
+          4,
+          6
+        ]
+      },
+      {
+        "name": "invalid-summary-times-fall-back-or-remain-unknown",
+        "statuses": [
+          {
+            "result": "AC",
+            "time": [
+              true,
+              "s"
+            ]
+          },
+          {
+            "result": "AC",
+            "time": [
+              "0",
+              "s"
+            ]
+          },
+          {
+            "result": "AC",
+            "time": [
+              null,
+              "s"
+            ]
+          },
+          {
+            "result": "AC",
+            "time": [
+              -1,
+              "s"
+            ],
+            "solutions": [
+              {
+                "result": "AC",
+                "time": [
+                  10,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": "FB",
+            "time": [
+              1,
+              "week"
+            ]
+          },
+          {
+            "result": "AC",
+            "time": [
+              20,
+              "s"
+            ]
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "expected": [
+          3,
+          5,
+          0,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "invalid-history-never-uses-stale-summary",
+        "statuses": [
+          {
+            "result": "RJ",
+            "time": [
+              0,
+              "s"
+            ],
+            "solutions": [
+              {
+                "result": "CE",
+                "time": [
+                  true,
+                  "s"
+                ]
+              },
+              {
+                "result": "WA",
+                "time": [
+                  "1",
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": "RJ",
+            "time": [
+              2,
+              "s"
+            ]
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1
+          ]
+        },
+        "expected": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "summary-determines-accepted-group",
+        "statuses": [
+          {
+            "result": "RJ",
+            "solutions": [
+              {
+                "result": "AC",
+                "time": [
+                  1,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": "AC",
+            "time": [
+              10,
+              "s"
+            ]
+          },
+          {
+            "result": "FB"
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            0,
+            1,
+            2
+          ]
+        },
+        "expected": [
+          1,
+          2,
+          0
+        ]
+      },
+      {
+        "name": "missing-statuses-retain-columns",
+        "statuses": [],
+        "layout": {
+          "revealedProblemIndexes": [
+            1
+          ],
+          "hiddenProblemIndexes": [
+            0,
+            2,
+            3
+          ]
+        },
+        "expected": [
+          1,
+          0,
+          2,
+          3
+        ]
+      },
+      {
+        "name": "empty-layout",
+        "statuses": [
+          {
+            "result": null
+          },
+          {
+            "result": "AC",
+            "time": [
+              20,
+              "s"
+            ]
+          },
+          {
+            "result": "FB",
+            "time": [
+              10,
+              "s"
+            ]
+          },
+          {
+            "result": "RJ",
+            "solutions": [
+              {
+                "result": "WA",
+                "time": [
+                  40,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": null
+          },
+          {
+            "result": null
+          },
+          {
+            "result": null,
+            "solutions": [
+              {
+                "result": "CE",
+                "time": [
+                  30,
+                  "s"
+                ]
+              }
+            ]
+          },
+          {
+            "result": null
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": []
+        },
+        "expected": []
+      },
+      {
+        "name": "revealed-prefix-is-copied",
+        "statuses": [],
+        "layout": {
+          "revealedProblemIndexes": [
+            2,
+            0,
+            1
+          ],
+          "hiddenProblemIndexes": []
+        },
+        "expected": [
+          2,
+          0,
+          1
+        ]
+      },
+      {
+        "name": "untouched-original-index-order",
+        "statuses": [
+          {
+            "result": null
+          },
+          {
+            "result": null
+          }
+        ],
+        "layout": {
+          "revealedProblemIndexes": [],
+          "hiddenProblemIndexes": [
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        "expected": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
   "constants": {
     "minRegenSupportedVersion": "0.3.0",
     "srkSupportedVersions": ">=0.3.0 <0.4.0",

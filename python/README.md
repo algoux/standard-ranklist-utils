@@ -48,6 +48,30 @@ patched = patch_ranklist(ranklist, {"type": "srk-patch", "version": 1, "operatio
 - `regenerate_rows_by_incremental_solutions`: Apply incremental solution tetrads to existing rows and re-sort them.
 - `convert_to_static_ranklist`: Add precomputed per-series rank values and segment indexes to each row.
 
+### CCPC26 display layout
+
+- `get_ccpc26_problem_layout(ranklist)`: Compute the revealed/hidden original problem indexes from a complete current
+  SRK 0.3.14 CCPC26 snapshot. Returns `None` without the standard ICPC CCPC26 configuration.
+- `get_ccpc26_row_problem_order(statuses, layout)`: Return the revealed prefix followed by hidden accepted, attempted,
+  and untouched problems, using accepted/latest-submission times and stable original-index ties.
+- `CCPC26ProblemLayout`: Exported `TypedDict` with `revealedProblemIndexes` and `hiddenProblemIndexes` lists.
+
+```python
+from standard_ranklist_utils import get_ccpc26_problem_layout, get_ccpc26_row_problem_order
+
+layout = get_ccpc26_problem_layout(ranklist)
+if layout is not None:
+    for row in ranklist["rows"]:
+        indexes = get_ccpc26_row_problem_order(row["statuses"], layout)
+        # Use these original indexes to render each row without rearranging its data.
+```
+
+The helpers are pure: they neither mutate the input nor retain reveal history. The application controls whether CCPC26
+is active and when freeze timing restores ordinary display; compute the layout before filtering rows for display.
+Count and ratio thresholds use OR, have no implicit 50/0.2 defaults, and honor official-only, denominator and rounding
+options. An empty threshold object reveals nothing; a configured zero threshold is applied literally.
+See [the cross-language display contract](../docs/ccpc26-display-helpers.md) for time precedence and missing-time behavior.
+
 ### diagnostics and patch
 
 - `diagnose_ranklist`: Inspect SRK completeness/correctness and return structured issues plus repair suggestions.

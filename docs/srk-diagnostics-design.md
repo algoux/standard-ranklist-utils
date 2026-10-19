@@ -29,6 +29,7 @@ in the CLI package rather than in `standard-ranklist-utils`.
 - Avatar and photo completeness checks inspect `row.user.avatar` and `row.user.photo` as separate items; `teamMembers[].avatar` and `teamMembers[].photo` are ignored.
 - i18n completeness checks are limited to `contest.title`, `row.user.name`, and `row.user.organization`.
 - Non-ICPC sorters mark ICPC-specific checks as `notApplicable` instead of failing.
+- Ranklists with no `series[].rule.preset === 'ICPC'` mark ICPC series completeness as `notApplicable`, not `missing`.
 - SRK summary fields remain authoritative where the spec says so. `solutions[]` mismatch diagnostics are warnings about history/summary consistency and regenerability, not proof that `status.result` is invalid.
 
 ## Diagnostic Rules

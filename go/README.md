@@ -56,6 +56,33 @@ The map-based helpers mirror srk JSON closely. When using exported Go structs su
 - `RegenerateRowsByIncrementalSolutions`: Apply incremental solution tetrads to existing rows and re-sort them.
 - `ConvertToStaticRanklist`: Add precomputed per-series rank values and segment indexes to each row.
 
+### CCPC26 display order
+
+- `GetCCPC26ProblemLayout`: Calculate revealed/hidden original problem indexes from the complete current snapshot;
+  returns `nil` without standard ICPC CCPC26 `config.problemRevealAcceptedThreshold` configuration.
+- `GetCCPC26RowProblemOrder`: Build one row's original problem-index order from its statuses and a layout.
+- `CCPC26ProblemLayout`: Typed layout with `RevealedProblemIndexes` and `HiddenProblemIndexes`; JSON uses the same
+  `revealedProblemIndexes` and `hiddenProblemIndexes` arrays as JavaScript/Python.
+
+```go
+layout := srkutils.GetCCPC26ProblemLayout(ranklist)
+if layout != nil {
+    order := srkutils.GetCCPC26RowProblemOrder(statuses, *layout)
+    _ = order // Index into the original problems/statuses; inputs are not reordered.
+}
+```
+
+The caller supplies a complete current ranklist, controls whether CCPC26 mode is active, and disables it at freeze time.
+Apply display-only row filters after calculating the layout. Both helpers are pure and keep no reveal history, so replay
+can move backwards. Revealed problems form a shared prefix; hidden accepted problems follow by acceptance time, then
+attempted problems by latest submission time, then untouched problems. Unknown times sort last within their group and
+original indexes break ties. AC and FB both count as accepted; rendering FB anonymously as AC belongs to the renderer.
+
+Thresholds support count OR ratio, official-only selection, `all`/`submitted`/`scored` denominators and
+`floor`/`ceil`/`round`. There are no implicit 50/0.2 thresholds. An empty threshold object is valid and reveals nothing.
+Numeric/time strings and booleans are not coerced into numbers. Native Go integer/float values, `json.Number`, and
+`TimeDuration` are supported. Returned empty arrays are non-nil and encode as `[]`.
+
 ### diagnostics and patch
 
 - `DiagnoseRanklist`: Inspect SRK completeness/correctness and return structured issues plus repair suggestions.

@@ -26,6 +26,7 @@ import {
 } from '../src';
 import type { CalculatedSolutionTetrad } from '../src';
 import packageJson from '../package.json';
+import { makeCCPC26ContractFixtures } from './ccpc26-fixtures';
 
 function makeRanklist(overrides: Partial<srk.Ranklist> = {}): srk.Ranklist {
   return {
@@ -267,6 +268,7 @@ const originalWarn = console.warn;
 console.warn = () => {};
 
 const fixtures = {
+  ccpc26: makeCCPC26ContractFixtures(),
   constants: {
     minRegenSupportedVersion: MIN_REGEN_SUPPORTED_VERSION,
     srkSupportedVersions: packageJson.srkSupportedVersions,

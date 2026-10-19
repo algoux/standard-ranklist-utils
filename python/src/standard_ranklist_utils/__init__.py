@@ -1,3 +1,4 @@
+from .ccpc26 import get_ccpc26_problem_layout, get_ccpc26_row_problem_order
 from .constants import MIN_REGEN_SUPPORTED_VERSION, SRK_SUPPORTED_VERSIONS
 from .diagnostics import diagnose_ranklist
 from .enums import EnumTheme
@@ -25,6 +26,7 @@ from .resolvers import (
 )
 from .types import (
     CalculatedSolutionTetrad,
+    CCPC26ProblemLayout,
     Color,
     I18NStringSet,
     Marker,
@@ -51,6 +53,7 @@ __all__ = [
     "ThemeColorInput",
     "ThemeColor",
     "RankValue",
+    "CCPC26ProblemLayout",
     "CalculatedSolutionTetrad",
     "Ranklist",
     "RanklistRow",
@@ -70,6 +73,8 @@ __all__ = [
     "resolve_theme_color",
     "resolve_style",
     "resolve_user_markers",
+    "get_ccpc26_problem_layout",
+    "get_ccpc26_row_problem_order",
     "sort_rows",
     "regenerate_ranklist_by_solutions",
     "regenerate_rows_by_incremental_solutions",

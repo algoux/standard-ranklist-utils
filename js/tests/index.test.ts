@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import * as index from '../src';
 import type {
   CalculatedSolutionTetrad,
+  CCPC26ProblemLayout,
   DiagnoseRanklistOptions,
   DiagnosticPatchOptions,
   PatchRanklistOptions,
@@ -38,6 +39,8 @@ test('index re-exports the public runtime API', () => {
     'filterSolutionsUntil',
     'sortRows',
     'calculateProblemStatistics',
+    'getCCPC26ProblemLayout',
+    'getCCPC26RowProblemOrder',
     'regenerateRanklistBySolutions',
     'regenerateRowsByIncrementalSolutions',
     'convertToStaticRanklist',
@@ -52,6 +55,8 @@ test('index re-exports the public runtime API', () => {
 });
 
 test('index re-exports public type-only helpers for TypeScript consumers', () => {
+  const layout: CCPC26ProblemLayout = { revealedProblemIndexes: [], hiddenProblemIndexes: [0] };
+  assert.deepEqual(index.getCCPC26RowProblemOrder([], layout), [0]);
   const rankValue: RankValue = { rank: null, segmentIndex: null };
   const diagnosticIssue: RanklistDiagnosticIssue = {
     code: 'EXAMPLE',

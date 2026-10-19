@@ -6,3 +6,4 @@ export * from './resolvers';
 export * from './ranklist';
 export * from './diagnostics';
 export * from './patch';
+export * from './ccpc26';

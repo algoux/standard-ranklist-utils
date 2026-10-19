@@ -70,6 +70,29 @@ This package provides structured JavaScript and TypeScript APIs. Command-line us
 - `regenerateRowsByIncrementalSolutions`: Apply incremental solution tetrads to existing rows and re-sort them.
 - `convertToStaticRanklist`: Add precomputed per-series rank values and segment indexes to each row.
 
+### ccpc26
+
+- `getCCPC26ProblemLayout`: Calculate revealed/hidden problem indexes from the complete current ranklist snapshot and the
+  standard `sorter.config.extendedAlgorithms` CCPC26 configuration; return `undefined` when that configuration is absent.
+- `getCCPC26RowProblemOrder`: Return a row's display indexes, keeping the shared revealed prefix and ordering hidden
+  problems by accepted time, latest submission time, then unsubmitted problem order.
+- `CCPC26ProblemLayout`: The exported `{ revealedProblemIndexes: number[], hiddenProblemIndexes: number[] }` type.
+
+```ts
+const layout = getCCPC26ProblemLayout(ranklist);
+const problemIndexes = layout && getCCPC26RowProblemOrder(ranklist.rows[0].statuses, layout);
+```
+
+Compute the layout before applying display filters. Both helpers preserve input objects and original problem indexes;
+callers decide whether CCPC26 display is enabled and when the contest reaches its freeze. Threshold conditions are ORed,
+with `floor`, `all`, and `includeOfficialOnly: false` as defaults. No count or ratio default is added, and zero thresholds
+are applied literally. A submitted team includes teams with only no-penalty submissions such as CE.
+
+Accepted ordering prefers `status.time`, falling back to the earliest AC/FB in solution history. Other attempted problems
+use the latest detailed submission time, or `status.time` when history is absent. Missing/invalid times sort after known
+times in the same group; equal times and unsubmitted problems use original index order. Full solution histories are needed
+for exact latest-submission ordering.
+
 ### diagnostics
 
 - `diagnoseRanklist`: Return a machine-friendly diagnostics object with precision summary, completeness checks, correctness checks, repair suggestions, and a flat `issues[]` index.

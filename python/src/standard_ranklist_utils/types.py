@@ -14,6 +14,11 @@ class ThemeColor(TypedDict):
     dark: Optional[str]
 
 
+class CCPC26ProblemLayout(TypedDict):
+    revealedProblemIndexes: list[int]
+    hiddenProblemIndexes: list[int]
+
+
 class _RankValueRequired(TypedDict):
     rank: Optional[int]
 

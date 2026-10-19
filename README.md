@@ -35,6 +35,18 @@ All three language packages expose library-level diagnostics and patch helpers. 
 The patch DSL is the shared `srk-patch` object format with SRK-aware targets such as `ranklist`, `contest`, `problem`,
 `row`, `status`, `solution`, and `sorter`. The public sorter target is `{"type": "sorter", "path": "config..."}`.
 
+## CCPC26 Display Helpers
+
+All three packages support SRK 0.3.14 CCPC26 reveal thresholds and per-row problem order:
+
+- JS: `getCCPC26ProblemLayout`, `getCCPC26RowProblemOrder`.
+- Python: `get_ccpc26_problem_layout`, `get_ccpc26_row_problem_order`.
+- Go: `GetCCPC26ProblemLayout`, `GetCCPC26RowProblemOrder`.
+
+These pure helpers preserve original data and indexes. The caller owns activation and
+freeze timing; renderer-specific anonymous FB styling is not part of this library.
+See [the cross-language contract](docs/ccpc26-display-helpers.md).
+
 ## Development
 
 Install JS dependencies:
