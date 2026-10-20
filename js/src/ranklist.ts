@@ -631,8 +631,17 @@ function genSeriesCalcFns(
         for (let i = 0; i < filteredOfficialRanks.length; i++) {
           officialRanksNoTied.push(filteredOfficialRanks[i] === null ? null : ++currentOfficialRank);
         }
+        // Keep ID-based membership (including duplicate/missing IDs in unchecked input) without scanning every row.
+        // Set uses SameValueZero, so exclude NaN to preserve the previous strict-equality behavior.
+        const filteredUserIds = new Set<srk.User['id']>();
+        for (const { user } of filteredRows) {
+          const id = user.id;
+          if (!Number.isNaN(id)) {
+            filteredUserIds.add(id);
+          }
+        }
         return (row, index) => {
-          if (row.user.official === false || !filteredRows.find((r) => r.user.id === row.user.id)) {
+          if (row.user.official === false || !filteredUserIds.has(row.user.id)) {
             return {
               rank: null,
               segmentIndex: null,

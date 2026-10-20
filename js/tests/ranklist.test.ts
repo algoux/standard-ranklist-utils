@@ -562,6 +562,166 @@ describe('ranklist utilities', () => {
     );
   });
 
+  test('ICPC membership preserves independent filters, official ranks, ties, and segment endpoints', () => {
+    const ranklist = makeRanklist({
+      series: [
+        {
+          title: 'Overall ratio',
+          segments: [{ title: 'Gold' }, { title: 'Silver' }],
+          rule: { preset: 'ICPC', options: { ratio: { value: [0.25, 0.25] } } },
+        },
+        ...[false, true].map<srk.RankSeries>((noTied) => ({
+          title: `Filtered count ${noTied}`,
+          segments: [{ title: 'Gold' }, { title: 'Silver' }],
+          rule: {
+            preset: 'ICPC',
+            options: {
+              filter: { byMarker: 'girls', byUserFields: [{ field: 'organization', rule: '^Alpha$' }] },
+              count: { value: [1, 1], noTied },
+            },
+          },
+        })),
+        {
+          title: 'Combined count and scored ratio',
+          segments: [{ title: 'Gold' }, { title: 'Silver' }],
+          rule: {
+            preset: 'ICPC',
+            options: { count: { value: [1, 2] }, ratio: { value: [0.5, 0.5], denominator: 'scored' } },
+          },
+        },
+      ],
+      rows: [
+        makeRow('a', { value: 3, time: [10, 'min'] }, undefined, {
+          official: true,
+          markers: ['girls'],
+          organization: 'Alpha',
+        }),
+        makeRow('b', { value: 3, time: [10, 'min'] }, undefined, { marker: 'girls', organization: 'Alpha' }),
+        makeRow('unofficial', { value: 3, time: [10, 'min'] }, undefined, {
+          official: false,
+          markers: ['girls'],
+          organization: 'Alpha',
+        }),
+        makeRow('c', { value: 2, time: [20, 'min'] }, undefined, {
+          marker: 'girls',
+          markers: [],
+          organization: 'Alpha',
+        }),
+        makeRow('d', { value: 1, time: [30, 'min'] }, undefined, { markers: ['girls'], organization: 'Beta' }),
+        makeRow('e', undefined, undefined, { markers: ['girls'], organization: 'Alpha' }),
+      ],
+    });
+    const inputBefore = JSON.stringify(ranklist);
+    const rankValues = convertToStaticRanklist(ranklist).rows.map((row) => row.rankValues);
+    const excluded = { rank: null, segmentIndex: null };
+
+    assert.deepEqual(rankValues, [
+      [
+        { rank: 1, segmentIndex: 0 },
+        { rank: 1, segmentIndex: 0 },
+        { rank: 1, segmentIndex: 0 },
+        { rank: 1, segmentIndex: 0 },
+      ],
+      [
+        { rank: 1, segmentIndex: 0 },
+        { rank: 1, segmentIndex: 0 },
+        { rank: 1, segmentIndex: 1 },
+        { rank: 1, segmentIndex: 0 },
+      ],
+      [excluded, excluded, excluded, excluded],
+      [{ rank: 3, segmentIndex: 1 }, excluded, excluded, { rank: 3, segmentIndex: 1 }],
+      [{ rank: 4, segmentIndex: null }, excluded, excluded, { rank: 4, segmentIndex: null }],
+      [
+        { rank: 5, segmentIndex: null },
+        { rank: 3, segmentIndex: null },
+        { rank: 3, segmentIndex: null },
+        { rank: 5, segmentIndex: null },
+      ],
+    ]);
+    assert.equal(JSON.stringify(ranklist), inputBefore);
+  });
+
+  test('ICPC membership retains strict ID equality for unvalidated duplicate, missing, and NaN IDs', () => {
+    // SRK requires unique string IDs. This utility also accepts unchecked JS objects, whose legacy behavior is retained.
+    const ids: unknown[] = ['duplicate', 'duplicate', undefined, undefined, NaN, NaN, 'excluded', 'duplicate'];
+    const rows = ids.map((id, index) => {
+      const row = makeRow(`row-${index}`, { value: ids.length - index }, undefined, {
+        markers: index % 2 === 0 || index === 7 ? ['included'] : [],
+        official: index === 7 ? false : undefined,
+      });
+      if (id === undefined) {
+        delete (row.user as Partial<srk.User>).id;
+      } else {
+        row.user.id = id as string;
+      }
+      return row;
+    });
+    rows[6].user.markers = [];
+    const ranklist = makeRanklist({
+      series: [
+        {
+          title: 'Filtered',
+          segments: [{ title: 'Medal' }],
+          rule: { preset: 'ICPC', options: { filter: { byMarker: 'included' }, count: { value: [10] } } },
+        },
+      ],
+      rows,
+    });
+
+    assert.deepEqual(
+      convertToStaticRanklist(ranklist).rows.map((row) => row.rankValues[0]),
+      [
+        { rank: 1, segmentIndex: 0 },
+        // Membership is by ID, not row identity: a filtered-out duplicate keeps the old null-rank segment result.
+        { rank: null, segmentIndex: 0 },
+        { rank: 2, segmentIndex: 0 },
+        { rank: null, segmentIndex: 0 },
+        { rank: null, segmentIndex: null },
+        { rank: null, segmentIndex: null },
+        { rank: null, segmentIndex: null },
+        { rank: null, segmentIndex: null },
+      ],
+    );
+  });
+
+  test('ICPC membership reads IDs linearly across full and filtered series', () => {
+    for (const size of [128, 256]) {
+      let idReads = 0;
+      const rows = Array.from({ length: size }, (_, index) => {
+        const row = makeRow(`u${index}`, { value: size - index }, undefined, {
+          markers: index % 2 === 0 ? ['included'] : [],
+        });
+        Object.defineProperty(row.user, 'id', {
+          enumerable: true,
+          get: () => {
+            idReads++;
+            return `u${index}`;
+          },
+        });
+        return row;
+      });
+      const result = convertToStaticRanklist(
+        makeRanklist({
+          rows,
+          series: [
+            { title: 'All', rule: { preset: 'ICPC', options: { count: { value: [size] } } } },
+            {
+              title: 'Filtered',
+              rule: { preset: 'ICPC', options: { filter: { byMarker: 'included' }, count: { value: [size] } } },
+            },
+          ],
+        }),
+      );
+
+      // A work-count assertion avoids machine-dependent timing thresholds and catches per-row membership scans.
+      assert.ok(idReads <= size * 8, `${size} rows required ${idReads} ID reads`);
+      assert.deepEqual(
+        result.rows.map((row) => row.rankValues.map((value) => value.rank)),
+        rows.map((_, index) => [index + 1, index % 2 === 0 ? index / 2 + 1 : null]),
+      );
+    }
+  });
+
   test('convertToStaticRanklist treats invalid user-field filters as non-matching', () => {
     const ranklist = makeRanklist({
       series: [
