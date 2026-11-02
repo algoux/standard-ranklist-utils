@@ -143,6 +143,20 @@ jobs:
         run: |
           gh release create "$TAG" --target "$GITHUB_SHA" --title "$TITLE" --notes "Published $TITLE to npm."
 
+      - name: Notify release success
+        if: ${{ success() }}
+        continue-on-error: true
+        uses: azurdream/meowpush-gh-actions@v1
+        with:
+          key: ${{ secrets.MEOWPUSH_KEY }}
+          title: '${{ github.repository }} Release Success'
+          body: |
+            Release to npm completed.
+            Tag: ${{ needs.validate.outputs.tag }}
+            Commit: ${{ github.sha }}
+          url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          group: github-actions
+
   python-check:
     needs: validate
     if: ${{ inputs.package == 'python' }}
@@ -227,6 +241,20 @@ jobs:
         run: |
           gh release create "$TAG" --target "$GITHUB_SHA" --title "$TITLE" --notes "Published $TITLE to PyPI."
 
+      - name: Notify release success
+        if: ${{ success() }}
+        continue-on-error: true
+        uses: azurdream/meowpush-gh-actions@v1
+        with:
+          key: ${{ secrets.MEOWPUSH_KEY }}
+          title: '${{ github.repository }} Release Success'
+          body: |
+            Release to PyPI completed.
+            Tag: ${{ needs.validate.outputs.tag }}
+            Commit: ${{ github.sha }}
+          url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          group: github-actions
+
   go-check:
     needs: validate
     if: ${{ inputs.package == 'go' }}
@@ -306,3 +334,17 @@ jobs:
           TITLE: ${{ needs.validate.outputs.title }}
         run: |
           gh release create "$TAG" --title "$TITLE" --notes "Published $TITLE as a Go module tag."
+
+      - name: Notify release success
+        if: ${{ success() }}
+        continue-on-error: true
+        uses: azurdream/meowpush-gh-actions@v1
+        with:
+          key: ${{ secrets.MEOWPUSH_KEY }}
+          title: '${{ github.repository }} Release Success'
+          body: |
+            Go module release completed.
+            Tag: ${{ needs.validate.outputs.tag }}
+            Commit: ${{ github.sha }}
+          url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          group: github-actions
